@@ -59,7 +59,17 @@ export default function MainPage() {
 
 async function fetchMajorCategories() {
   try {
-    const response = await fetch(`${API_URL}/api/v1/courses/major-categories/`);
+    const accessToken = getCookie('access');
+
+    const response = await fetch(
+      `${API_URL}/api/v1/courses/major-categories/`, { 
+        method: 'GET',  
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+        credentials: 'include' 
+      });
     const data = await response.json();
     displayCategories(data);
   } catch (error) {

@@ -1,19 +1,5 @@
 {
-  "name": "orm_city_fe",
-  "version": "1.0.0",
-  "description": "orm-city frontend repository",
-  "main": "app.js",
-  "scripts": {
-    "start": "node server.js",
-    "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.21.0"
-  },
-  "devDependencies": {
-    "webpack-cli": "^5.1.4"
   }
 }

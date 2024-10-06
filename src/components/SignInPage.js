@@ -2,9 +2,10 @@ import { router } from "../js/router.js"; // router 임포트
 import { API_URL } from "../config/config.js"; // config.js에서 API_URL 임포트
 
 export default function SignInPage() {
-  // 로그인 API 호출
+  // 로그인 API 호출 http://127.0.0.1:8000/api/v1/accounts/login/ 
   async function signIn(event) {
-    event.preventDefault(); // 기본 제출 동작 방지
+    event.preventDefault(); 
+
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
@@ -20,7 +21,8 @@ export default function SignInPage() {
       const data = await response.json();
       if (response.ok) {
         // JWT 토큰을 쿠키에 저장 (만료 시간은 예시로 1시간 설정)
-        setCookie("authToken", data.token, 1);
+        setCookie("access", data.access, 1);
+        setCookie("refresh", data.refresh, 1);
 
         // 메인 페이지로 이동
         router.navigateTo("/");
