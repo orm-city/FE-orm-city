@@ -1,6 +1,10 @@
-const express = require("express");
-const path = require("path");
-const app = express();
+/*
+  node js server 구동해주는 파일
+*/
+
+const express = require("express"); // require: node_modules 자동으로 읽음 express: 라이브러리
+const path = require("path"); // 경로
+const app = express(); // express 실행 
 
 // 로그 미들웨어: 모든 요청을 콘솔에 출력
 app.use((req, res, next) => {
@@ -9,12 +13,20 @@ app.use((req, res, next) => {
   });
 
 // 정적 파일을 제공하기 위한 설정
-app.use("/assets", express.static(path.join(__dirname, "assets")));
+console.log(__dirname)
+app.use("/assets", express.static(path.join(__dirname, "assets"))); // path.join : 운영체제마다 '/' 표현이 달라서 통합해주는 개념
+
 
 // 기본 페이지 라우팅
 app.get("/", (req, res) => { //127.0.0.1:3000/
   res.sendFile(path.join(__dirname, "pages", "index.html"));
 });
+
+app.get("/pages/login.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "login.html"));
+});
+
+
 
 // 동적 라우팅 설정: /major/:id 경로 처리
 app.get("/major/:id", (req, res) => { //127.0.0.1:3000/major/1
@@ -28,7 +40,7 @@ app.get('*', (req, res) => {
 });
 
 // 서버 시작
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const PORT = process.env.PORT || 3000; 
+app.listen(PORT, () => { // port, ()=> : 실행
+  console.log(`Server is running on port ${PORT}`); 
 }); 
