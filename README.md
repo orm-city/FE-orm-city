@@ -16,7 +16,10 @@ npm install
 3. 로컬 서버 실행
 다음 명령어로 로컬 개발 서버를 실행합니다.
 ```
-npm start
+node app.js
 ```
 기본적으로 개발 서버는 http://127.0.0.1:3000 에서 실행됩니다. 브라우저에서 해당 URL로 접속하여 애플리케이션을 확인할 수 있습니다.
 
+사용한 html 파일 목록
+index.html
+course-details-2.html
