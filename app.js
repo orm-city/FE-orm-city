@@ -22,9 +22,35 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "_index.html"));
 });
 
+
+
+/*
+  header user box
+  ====================start=========================
+*/
+// 로그인 페이지
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "_login.html"));
 });
+
+// 마이프로필
+app.get("/profile", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "instructor-profile.html"));
+});
+
+app.get("/my-enroll-course", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "instructor-enroll-course.html"));
+});
+
+app.get("/my-course", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "instructor-my-course.html"));
+});
+
+/*
+  header user box
+  ====================end============================
+*/
+
 
 // 동적 라우팅 설정: /major/:id 경로 처리
 app.get("/major/:id", (req, res) => { 
