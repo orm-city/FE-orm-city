@@ -12,20 +12,26 @@ app.use((req, res, next) => {
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 // 기본 페이지 라우팅
-app.get("/", (req, res) => { //127.0.0.1:3000/
+app.get("/", (req, res) => { 
   res.sendFile(path.join(__dirname, "pages", "index.html"));
 });
 
 // 동적 라우팅 설정: /major/:id 경로 처리
-app.get("/major/:id", (req, res) => { //127.0.0.1:3000/major/1
+app.get("/major/:id", (req, res) => { 
   const majorId = req.params.id;
   res.sendFile(path.join(__dirname, "pages", "course-details-2.html"));
 });
 
-// Catch-all 라우트 추가
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'pages', 'index.html'));
-});
+// 404 처리 핸들러 (라우트가 없을 때)
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, "pages", "404.html"));
+  });
+
+// 일반적인 에러 처리 핸들러
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+  });
 
 // 서버 시작
 const PORT = process.env.PORT || 3000;
