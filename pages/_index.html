@@ -61,66 +61,6 @@
 
 
 
-      
-      <!-- cart mini area start -->
-      <div class="cartmini__area">
-         <div class="cartmini__wrapper p-relative d-flex justify-content-between flex-column">
-            <div class="cartmini__close">
-               <button type="button" class="cartmini__close-btn cartmini-close-btn"><i class="fal fa-times"></i></button>
-            </div>
-            <div class="cartmini__top-wrapper">
-               <div class="cartmini__top p-relative">
-                  <div class="cartmini__top-title">
-                     <h4>Shopping cart</h4>
-                  </div>
-               </div>
-               <div class="cartmini__shipping home-2">
-               <p> Free Shipping for all orders over <span>$50</span></p>
-               <div class="progress">
-                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" data-width="70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-               </div>                   
-               </div>
-               <div class="cartmini__widget">
-                  <div class="cartmini__widget-item">
-                     <div class="cartmini__thumb">
-                        <a href="shop-details.html">
-                           <img src="/assets/img/shop/product/shop-product-1.jpg" alt="">
-                        </a>
-                     </div>
-                     <div class="cartmini__content">
-                        <h5 class="cartmini__title home-2"><a href="shop-details.html">Nar Allt Ar Over</a></h5>
-                        <div class="cartmini__price-wrapper">
-                           <span class="cartmini__price home-2">$108.00</span>
-                           <span class="cartmini__quantity">x2</span>
-                        </div>
-                     </div>
-                     <a href="#" class="cartmini__del home-2"><i class="fa-regular fa-xmark"></i></a>
-                  </div>
-               </div>
-               <!-- for wp -->
-               <!-- if no item in cart -->
-               <div class="cartmini__empty text-center d-none">
-                  <img src="/assets/img/shop/empty-cart.png" alt="">
-                  <p>Your Cart is empty</p>
-                  <a href="shop.html" class="tp-btn">Go to Shop</a>
-               </div>
-            </div>
-            <div class="cartmini__checkout">
-               <div class="cartmini__checkout-title mb-30">
-                  <h4>Subtotal:</h4>
-                  <span>$113.00</span>
-               </div>
-               <div class="cartmini__checkout-btn home-2">
-                  <a href="cart.html" class="tp-btn mb-10 w-100"> view cart</a>
-                  <a href="checkout.html" class="tp-btn tp-btn-border w-100"> checkout</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="body-overlay"></div>
-      <!-- cart mini area end -->
-
-
       <!-- header-area-start -->
       <header class="header-area p-relative">
          <div id="header-sticky" class="tp-header-2">
@@ -182,23 +122,8 @@
                   </div>
                   <div class="col-xxl-3 col-xl-2 col-lg-6 col-6">
                      <div class="tp-header-2-contact d-flex align-items-center justify-content-end">
-                        <div class="tp-header-inner-search">
-                          
-                        </div>
-                        <div class="tp-header-2-cart home-2 d-none d-xxl-block">
-                           <button class="cartmini-open-btn">
-                              <span><svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.87331 20.4999H14.2211C17.2875 20.4999 19.6399 19.3923 18.9717 14.9346L18.1937 8.89345C17.7818 6.66919 16.363 5.81793 15.1182 5.81793H4.93967C3.67652 5.81793 2.34013 6.73326 1.86416 8.89345L1.08613 14.9346C0.518621 18.8889 2.80695 20.4999 5.87331 20.4999Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                 <path d="M5.73156 5.59824C5.73156 3.21216 7.66585 1.27787 10.0519 1.27787V1.27787C11.2009 1.273 12.3045 1.72603 13.1187 2.53679C13.9329 3.34754 14.3906 4.44923 14.3906 5.59824V5.59824" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                 <path d="M7.08973 10.1017H7.1355" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                 <path d="M12.9257 10.1017H12.9714" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                 </svg></span>
-                              <i>1</i>
-                           </button>
-                        </div>
-                        <div class="tp-header-inner-btn home-2 d-none d-xxl-block">
-                           <a class="tp-btn-inner" href="course-with-filter.html">Enroll Now</a>
-                        </div>
+                        
+                        
                         <div class="tp-header-inner-login tp-header-user-hover">
                            <button><img src="/assets/img/event/user.jpg" alt=""></button>
                            <div class="tp-header-user-box">
@@ -261,14 +186,14 @@
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="/login">
+                                          <a id="auth-link" href="#">
                                              <span>
                                                 <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                    <path opacity="0.4" d="M9.94863 0C10.3714 0 10.7222 0.341829 10.7222 0.773613V17.2264C10.7222 17.6492 10.3804 18 9.94863 18C4.65028 18 0.953125 14.3028 0.953125 9.0045C0.953125 3.70615 4.65927 0 9.94863 0Z" fill="currentColor"></path>
                                                    <path d="M16.5143 8.58188L13.9596 6.01816C13.6987 5.75729 13.2669 5.75729 13.006 6.01816C12.7452 6.27903 12.7452 6.71082 13.006 6.97169L14.4093 8.37498H5.80064C5.43182 8.37498 5.12598 8.68083 5.12598 9.04965C5.12598 9.41846 5.43182 9.72431 5.80064 9.72431H14.4093L13.006 11.1276C12.7452 11.3885 12.7452 11.8203 13.006 12.0811C13.141 12.2161 13.3119 12.279 13.4828 12.279C13.6537 12.279 13.8246 12.2161 13.9596 12.0811L16.5143 9.51741C16.7752 9.26554 16.7752 8.84275 16.5143 8.58188Z" fill="currentColor"></path>
-                                                   </svg>
+                                                </svg>
                                              </span>
-                                             Logout
+                                             <span id="auth-text">Login</span>
                                           </a>
                                        </li>
                                     </ul>
@@ -529,11 +454,12 @@
       <script src="/assets/js/flatpickr.js"></script>      
       <script src="/assets/js/ajax-form.js"></script>
       <script src="/assets/js/main.js"></script>
+      <script src="/assets/js/check-login.js"></script>
       <script>
         // API에서 데이터를 받아와 코스 항목을 생성하는 함수
         async function fetchMajorCategories() {
           try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/courses/major-categories/');
+            const response = await fetch('http://127.0.0.1:8000/courses/major-categories/');
             const data = await response.json();
 
             // 받은 데이터를 기반으로 코스 항목 생성
@@ -547,7 +473,7 @@
                   <div class="tp-course-item p-relative fix mb-30">
                       
                       <div class="tp-course-thumb">
-                        <a href="/major/${course.id}/"><img class="course-pink" src="/assets/img/course/course-thumb-1.jpg" alt=""></a>
+                        <a href="/major/${course.id}"><img class="course-pink" src="/assets/img/course/course-thumb-1.jpg" alt=""></a>
                       </div>
                       <div class="tp-course-content">
                         <div class="tp-course-tag mb-10">
@@ -555,7 +481,7 @@
                         <div class="tp-course-meta">
                         </div>
                         <h4 class="tp-course-title">
-                            <a href="/major/${course.id}/">${course.name}</a>
+                            <a href="/major/${course.id}">${course.name}</a>
                         </h4>
                         <div class="tp-course-rating d-flex align-items-end justify-content-between">
                             <div class="tp-course-pricing home-2">
@@ -564,7 +490,7 @@
                         </div>
                       </div>
                       <div class="tp-course-btn home-2">
-                        <a href="/major/${course.id}/">Preview this Course</a>
+                        <a href="/major/${course.id}">Preview this Course</a>
                       </div>
                   </div>
                 </div>`;

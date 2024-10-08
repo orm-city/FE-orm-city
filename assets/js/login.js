@@ -49,7 +49,7 @@ async function handleLogin(event) {
 
     try {
     debugLog('Sending login request');
-    const response = await fetch('http://127.0.0.1:8000/api/v1/accounts/token/', {
+    const response = await fetch('http://127.0.0.1:8000/accounts/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ async function handleLogin(event) {
             showMessage('로그인 성공!', 'success');
             debugLog('Login successful');
             setTimeout(() => {
-            window.location.href = '/index-2.html';
+            window.location.href = '/';
         }, 3000);
     } else {
     showMessage(data.detail || '로그인 실패. 다시 시도해주세요.', 'error');
