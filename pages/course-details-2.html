@@ -367,77 +367,24 @@
                               <h4 class="tp-course-details-2-main-title">Course Curriculum</h4>
                               <div class="tp-course-details-2-faq">
                                  <div class="accordion" id="accordionPanelsStayOpenExample">
-                                    <div class="accordion-item">
-                                      <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                        <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                                          <span class="span">{minorcourse.name}</span>
-                                          <span class="accordion-btn"></span>
-                                       </button>
-                                      </h2>
-                                      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                                        <div class="accordion-body">
-                                          <div class="tp-course-details-2-faq-item d-flex justify-content-between">
-                                             <div class="left"><span>  <i>Video:</i> Course Intro</span>
-                                             </div>
-                                              <div class="right">
-                                                
-                                              </div>
-                                          </div>
-                                          <div class="tp-course-details-2-faq-item d-flex justify-content-between">
-                                             <div class="left"><span>  <i>Video:</i> Greetings and introduction</span>
-                                             </div>
-                                              <div class="right">
-                                                
-                                              </div>
-                                          </div>
-                                          <div class="tp-course-details-2-faq-item d-flex justify-content-between">
-                                             <div class="left"><span>  <i>Audio: </i> Incididunt ut labore et dolore</span>
-                                             </div>
-                                              <div class="right">
-                                                <span></span>
-                                              </div>
-                                          </div>
-                                          <div class="tp-course-details-2-faq-item d-flex justify-content-between">
-                                             <div class="left"><span>  <i>Reading:</i> Incididunt ut labore et dolore</span>
-                                             </div>
-                                              <div class="right">
-                                                <span></span>
-                                              </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    
-                                  </div>
+                                    <!-- Minor categories and videos will be inserted here dynamically -->
+                                    <div id="minor-category-container"></div>
+                                 </div>
                               </div>
                            </div>
-
-                         
-
-                           
-
 
                         </div>
                      </div>
                   </div>
                   <div class="col-lg-4">
                      <div class="tp-course-details-2-widget">
-                        <div class="tp-course-details-2-widget-thumb p-relative">
-                           <img src="/assets/img/course/details/course.jpg" alt="">
-                           <a class="popup-video" href="https://www.youtube.com/watch?v=EW4ZYb3mCZk&t=1s"><span><svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M0 1.83167C0 1.0405 0.875246 0.562658 1.54076 0.990487L12.6915 8.15882C13.3038 8.55246 13.3038 9.44754 12.6915 9.84118L1.54076 17.0095C0.875246 17.4373 0 16.9595 0 16.1683V1.83167Z" fill="#031F42" />
-                            </svg></span></a>
-                        </div>
                         <div class="tp-course-details-2-widget-content">
                            <div class="tp-course-details-2-widget-price">
                               <span>$120.99 </span>
                               <del>$145.99 </del>
                            </div>
                            <div class="tp-course-details-2-widget-btn">
-                              <a class="active" href="cart.html">Add to Cart</a>
                               <a href="course-with-filter.html">Buy Course</a>
-                              <p>30-Day Money-Back Guarantee</p>
                            </div>
 
                            <div class="tp-course-details-2-widget-list">
@@ -450,7 +397,7 @@
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 1C12.6415 1 16 4.35775 16 8.5C16 12.6423 12.6415 16 8.5 16C4.35775 16 1 12.6423 1 8.5C1 4.35775 4.35775 1 8.5 1Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8692 8.49618C10.8692 7.85581 7.58703 5.80721 7.2147 6.17556C6.84237 6.54391 6.80657 10.4137 7.2147 10.8168C7.62283 11.2213 10.8692 9.13655 10.8692 8.49618Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                        </svg> Lectures</span>
-                                    <span>40</span>
+                                    <span id="total-videos-count">{비디오의 총 개수}</span>
                                  </div>
                                  <div class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
                                     <span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -458,62 +405,6 @@
                                        <path d="M8 3.80005V8.00005L10.8 9.40005" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg> Duration</span>
                                     <span>4h 50m</span>
-                                 </div>
-                                 <div class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span> <svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                       <path d="M5.5 13V5.5" stroke="#4F5158" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path d="M10 13V1" stroke="#4F5158" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path d="M1 13V10" stroke="#4F5158" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                     </svg> Skill Level</span>
-                                    <span>Beginner</span>
-                                 </div>
-                                 <div class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span> <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                       <path d="M8 15.5C11.866 15.5 15 12.366 15 8.5C15 4.63401 11.866 1.5 8 1.5C4.13401 1.5 1 4.63401 1 8.5C1 12.366 4.13401 15.5 8 15.5Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path d="M1 8.5H15" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path d="M7.99727 1.5C9.74816 3.41685 10.7432 5.90442 10.7973 8.5C10.7432 11.0956 9.74816 13.5832 7.99727 15.5C6.24637 13.5832 5.25134 11.0956 5.19727 8.5C5.25134 5.90442 6.24637 3.41685 7.99727 1.5Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                     </svg> Language</span>
-                                    <span>English</span>
-                                 </div>
-                                 <div class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span> <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                       <path opacity="0.4" d="M1.06836 6.18286H13.5451" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path opacity="0.4" d="M10.4102 8.91675H10.4194" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path opacity="0.4" d="M7.30273 8.91675H7.312" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path opacity="0.4" d="M4.1875 8.91675H4.19676" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path opacity="0.4" d="M10.4102 11.6375H10.4194" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path opacity="0.4" d="M7.30273 11.6375H7.312" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path opacity="0.4" d="M4.1875 11.6375H4.19676" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path d="M10.1289 1V3.30355" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path d="M4.47656 1V3.30355" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2668 2.10535H4.33967C2.28399 2.10535 1 3.2505 1 5.35547V11.6902C1 13.8283 2.28399 14.9999 4.33967 14.9999H10.2603C12.3225 14.9999 13.6 13.8481 13.6 11.7432V5.35547C13.6065 3.2505 12.329 2.10535 10.2668 2.10535Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                     </svg> Deadline</span>
-                                    <span>30 Nov 2024</span>
-                                 </div>
-                                 <div class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
-                                    <span> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                       <path d="M14.721 6.64274C14.721 7.8116 14.3744 8.88373 13.7779 9.77851C12.9073 11.0683 11.5289 11.9792 9.9247 12.2129C9.65063 12.2613 9.36849 12.2855 9.07829 12.2855C8.78809 12.2855 8.50596 12.2613 8.23188 12.2129C6.62773 11.9792 5.24929 11.0683 4.37869 9.77851C3.78217 8.88373 3.43555 7.8116 3.43555 6.64274C3.43555 3.52311 5.95866 1 9.07829 1C12.1979 1 14.721 3.52311 14.721 6.64274Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path opacity="0.4" d="M16.5341 14.2766L15.2041 14.591C14.9058 14.6636 14.672 14.8893 14.6075 15.1875L14.3254 16.3725C14.1722 17.0174 13.35 17.2109 12.9228 16.703L9.07766 12.2856L5.23253 16.7111C4.80529 17.2189 3.98307 17.0255 3.82991 16.3806L3.54777 15.1956C3.47522 14.8973 3.24145 14.6636 2.95125 14.5991L1.62117 14.2847C1.00853 14.1396 0.790885 13.3738 1.23424 12.9304L4.37806 9.78662C5.24865 11.0764 6.6271 11.9873 8.23125 12.2211C8.50532 12.2694 8.78746 12.2936 9.07766 12.2936C9.36786 12.2936 9.64999 12.2694 9.92407 12.2211C11.5282 11.9873 12.9067 11.0764 13.7773 9.78662L16.9211 12.9304C17.3644 13.3657 17.1468 14.1315 16.5341 14.2766Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                       <path opacity="0.4" d="M9.54557 4.20822L10.0212 5.15942C10.0857 5.2884 10.2549 5.41738 10.4081 5.44156L11.2706 5.58665C11.8188 5.67533 11.9478 6.07838 11.5528 6.47338L10.8837 7.14243C10.7709 7.25529 10.7064 7.47295 10.7467 7.63417L10.9401 8.46446C11.0933 9.11741 10.7467 9.37535 10.1663 9.02872L9.36017 8.55312C9.21507 8.46445 8.97324 8.46445 8.82814 8.55312L8.02203 9.02872C7.44163 9.36728 7.09501 9.11741 7.24817 8.46446L7.44163 7.63417C7.47388 7.48101 7.41745 7.25529 7.3046 7.14243L6.63553 6.47338C6.24054 6.07838 6.36951 5.68339 6.91766 5.58665L7.7802 5.44156C7.9253 5.41738 8.09458 5.2884 8.15907 5.15942L8.63467 4.20822C8.86844 3.69231 9.28762 3.69231 9.54557 4.20822Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                     </svg> Certificate</span>
-                                    <span>Yes</span>
-                                 </div>
-
-                                 <div class="tp-course-details-2-widget-share d-flex align-items-center justify-content-between">
-                                   <a class="share" href="#"><span><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.5023 5.2C12.6621 5.2 13.6023 4.2598 13.6023 3.1C13.6023 1.9402 12.6621 1 11.5023 1C10.3425 1 9.40234 1.9402 9.40234 3.1C9.40234 4.2598 10.3425 5.2 11.5023 5.2Z" stroke="#5169F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M3.1 10.1001C4.2598 10.1001 5.2 9.15994 5.2 8.00014C5.2 6.84035 4.2598 5.90015 3.1 5.90015C1.9402 5.90015 1 6.84035 1 8.00014C1 9.15994 1.9402 10.1001 3.1 10.1001Z" stroke="#5169F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M11.5023 15C12.6621 15 13.6023 14.0598 13.6023 12.9C13.6023 11.7403 12.6621 10.8 11.5023 10.8C10.3425 10.8 9.40234 11.7403 9.40234 12.9C9.40234 14.0598 10.3425 15 11.5023 15Z" stroke="#5169F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M4.91406 9.05701L9.69506 11.843" stroke="#5169F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M9.68806 4.15723L4.91406 6.94322" stroke="#5169F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                  </svg></span> Share this course</a>
-                                  <a class="coupon" href="#">Apply coupon</a>
-                                 </div>
-                                 <div class="tp-course-details-2-widget-search p-relative">
-                                    <form action="#">
-                                       <input type="text" placeholder="Enter Coupon Code">
-                                       <button  type="submit">Apply</button>
-                                    </form>
                                  </div>
                            </div>
                         </div>
@@ -652,6 +543,106 @@
       <script src="/assets/js/flatpickr.js"></script>      
       <script src="/assets/js/ajax-form.js"></script>
       <script src="/assets/js/main.js"></script>
+      <script>
+         // API에서 Minor Category와 그에 속한 Video를 가져와 동적으로 HTML에 추가하는 함수
+         async function fetchMinorCategories(majorCategoryId) {
+            try {
+               // API 요청
+               const response = await fetch(`http://127.0.0.1:8000/api/v1/courses/major-categories/${majorCategoryId}/minor-categories/`);
+               const data = await response.json();
+
+               // 응답에서 minor_categories 배열을 가져옴
+               const minorCategories = data.minor_categories;
+
+               // minor_categories가 빈 배열([])이면 404 페이지로 리디렉션
+               if (Array.isArray(minorCategories) && minorCategories.length === 0) {
+                  // 404 페이지로 리디렉션
+                  window.location.href = '/404';  // 404 페이지 경로로 리디렉션
+                  return;
+               }
+
+               // minor_categories가 배열일 경우만 처리
+               if (Array.isArray(minorCategories)) {
+                  const minorCategoryContainer = document.getElementById('minor-category-container');
+                  minorCategoryContainer.innerHTML = '';  // 기존 내용을 초기화
+
+                  minorCategories.forEach((minorCategory, index) => {
+                        const videosHtml = minorCategory.videos.map(video => {
+                           return `
+                           <div class="tp-course-details-2-faq-item d-flex justify-content-between">
+                              <div class="left">
+                                    <span><i>${video.name}:</i> ${video.description}</span>
+                              </div>
+                           </div>`;
+                        }).join('');
+
+                        const minorCategoryHtml = `
+                        <div class="accordion-item">
+                           <h2 class="accordion-header" id="panelsStayOpen-heading-${index}">
+                              <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-${index}" aria-expanded="false" aria-controls="panelsStayOpen-collapse-${index}">
+                                    <span>${minorCategory.name}</span>
+                                    <span class="accordion-btn"></span>
+                              </button>
+                           </h2>
+                           <div id="panelsStayOpen-collapse-${index}" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading-${index}">
+                              <div class="accordion-body">
+                                    ${videosHtml}
+                              </div>
+                           </div>
+                        </div>`;
+
+                        minorCategoryContainer.innerHTML += minorCategoryHtml;
+                  });
+               } else {
+                  console.error('응답 데이터에 minor_categories 배열이 없습니다.');
+               }
+            } catch (error) {
+               console.error('Error fetching the minor categories and videos:', error);
+               // 에러 발생 시 404 페이지로 리디렉션할 수 있음
+               window.location.href = '/404';
+            }
+         }
+
+
+         // API를 통해 비디오의 총 개수를 가져와 HTML에 삽입하는 함수
+         async function fetchTotalVideoCount(majorCategoryId) {
+            try {
+               // API 요청
+               const response = await fetch(`http://127.0.0.1:8000/api/v1/courses/major-categories/${majorCategoryId}/minor-categories/`);
+               const data = await response.json();
+
+               // 총 비디오 개수 가져오기
+               const totalVideoCount = data.total_video_count;
+
+               // HTML 요소에 총 비디오 개수 삽입
+               const totalVideoCountElement = document.getElementById('total-videos-count');
+               totalVideoCountElement.textContent = totalVideoCount;
+            } catch (error) {
+               console.error('Error fetching total video count:', error);
+            }
+         }
+
+         // 페이지 로드 시 특정 major_category_id로 데이터 로드
+         document.addEventListener('DOMContentLoaded', function() {
+            // 현재 페이지의 URL 경로 가져오기
+            const path = window.location.pathname;
+
+            // "/major/<int:id>/"에서 id 추출
+            const regex = /\/major\/(\d+)(\/|$)/;
+            const match = path.match(regex);
+
+            // 매치가 성공하면, 첫 번째 캡처 그룹(숫자) 가져오기
+            if (match) {
+               const majorCategoryId = match[1];  // '<int:id>'에 해당하는 숫자를 가져옴
+               // 가져온 major_category_id를 사용하여 데이터 로드
+               fetchMinorCategories(majorCategoryId);
+               fetchTotalVideoCount(majorCategoryId);
+            } else {
+               console.error('URL에서 major_category_id를 찾을 수 없습니다.');
+            }
+         });
+
+      </script>
 
    </body>
 
