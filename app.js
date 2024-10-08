@@ -26,8 +26,6 @@ app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "login.html"));
 });
 
-
-
 // 동적 라우팅 설정: /major/:id 경로 처리
 app.get("/major/:id", (req, res) => { 
   const majorId = req.params.id;
