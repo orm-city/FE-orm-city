@@ -19,7 +19,7 @@ app.use("/assets", express.static(path.join(__dirname, "assets"))); // path.join
 
 // 기본 페이지 라우팅
 app.get("/", (req, res) => { 
-  res.sendFile(path.join(__dirname, "pages", "index.html"));
+  res.sendFile(path.join(__dirname, "pages", "_index.html"));
 });
 
 
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 */
 // 로그인 페이지
 app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "pages", "login.html"));
+  res.sendFile(path.join(__dirname, "pages", "_login.html"));
 });
 
 // 마이프로필
@@ -55,12 +55,18 @@ app.get("/my-course", (req, res) => {
 // 동적 라우팅 설정: /major/:id 경로 처리
 app.get("/major/:id", (req, res) => { 
   const majorId = req.params.id;
-  res.sendFile(path.join(__dirname, "pages", "course-details-2.html"));
+  res.sendFile(path.join(__dirname, "pages", "_course-details-2.html"));
+});
+
+// 동적 라우팅 설정: /major/:id/videos 경로 처리
+app.get("/major/:id/videos", (req, res) => { 
+  const majorId = req.params.id;
+  res.sendFile(path.join(__dirname, "pages", "_study-page.html"));
 });
 
 // 404 처리 핸들러 (라우트가 없을 때)
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, "pages", "404.html"));
+    res.status(404).sendFile(path.join(__dirname, "pages", "_404.html"));
   });
 
 // 일반적인 에러 처리 핸들러
