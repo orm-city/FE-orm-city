@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 
 /*
-  header user box
+  header user menu
   ====================start=========================
 */
 // 로그인 페이지
@@ -36,15 +36,19 @@ app.get("/login", (req, res) => {
 
 // 마이프로필
 app.get("/profile", (req, res) => {
-  res.sendFile(path.join(__dirname, "pages", "instructor-profile.html"));
+  res.sendFile(path.join(__dirname, "pages", "_instructor-profile.html"));
 });
 
 app.get("/my-enroll-course", (req, res) => {
-  res.sendFile(path.join(__dirname, "pages", "instructor-enroll-course.html"));
+  res.sendFile(path.join(__dirname, "pages", "_instructor-enroll-course.html"));
 });
 
 app.get("/my-course", (req, res) => {
-  res.sendFile(path.join(__dirname, "pages", "instructor-my-course.html"));
+  res.sendFile(path.join(__dirname, "pages", "_instructor-my-course.html"));
+});
+
+app.get("/my-orders", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "_instructor-order.html"));
 });
 
 /*
