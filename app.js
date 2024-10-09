@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 
 /*
-  header user box
+  header user menu
   ====================start=========================
 */
 // 로그인 페이지
@@ -45,6 +45,10 @@ app.get("/my-enroll-course", (req, res) => {
 
 app.get("/my-course", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "_instructor-my-course.html"));
+});
+
+app.get("/my-orders", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "_instructor-order.html"));
 });
 
 /*
