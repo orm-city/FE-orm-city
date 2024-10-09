@@ -62,21 +62,21 @@ async function handleLogin(event) {
     debugLog(`Response data: ${JSON.stringify(data)}`);
 
     if (response.ok) {
-            setCookie('access', data.access, 1);
-            setCookie('refresh', data.refresh, 1);
-            showMessage('로그인 성공!', 'success');
-            debugLog('Login successful');
-            setTimeout(() => {
-            window.location.href = '/';
-        }, 3000);
+        setCookie('access', data.access, 1);
+        setCookie('refresh', data.refresh, 1);
+        showMessage('로그인 성공!', 'success');
+        debugLog('Login successful');
+        setTimeout(() => {
+        window.location.href = '/';
+        }, 2000);
     } else {
-    showMessage(data.detail || '로그인 실패. 다시 시도해주세요.', 'error');
-    debugLog('Login failed');
+        showMessage(data.detail || '로그인 실패. 다시 시도해주세요.', 'error');
+        debugLog('Login failed');
     }
     } catch (error) {
-    console.error('로그인 중 오류 발생:', error);
-    showMessage('서버 오류가 발생했습니다. 나중에 다시 시도해주세요.', 'error');
-    debugLog(`Error during login: ${error.message}`);
+        console.error('로그인 중 오류 발생:', error);
+        showMessage('서버 오류가 발생했습니다. 나중에 다시 시도해주세요.', 'error');
+        debugLog(`Error during login: ${error.message}`);
     }
 }
 
@@ -98,11 +98,11 @@ function showMessage(message, type) {
     messageContainer.style.textAlign = 'center';
 
 if (type === 'success') {
-    messageContainer.style.backgroundColor = '#d4edda';
-    messageContainer.style.color = '#155724';
+        messageContainer.style.backgroundColor = '#d4edda';
+        messageContainer.style.color = '#155724';
     } else {
-    messageContainer.style.backgroundColor = '#f8d7da';
-    messageContainer.style.color = '#721c24';
+        messageContainer.style.backgroundColor = '#f8d7da';
+        messageContainer.style.color = '#721c24';
     }
 
     const form = document.querySelector('.tp-login-input-form');
@@ -110,6 +110,6 @@ if (type === 'success') {
 
     // 5초 후 메시지 제거
     setTimeout(() => {
-    messageContainer.remove();
+        messageContainer.remove();
     }, 3000);
- }
+}

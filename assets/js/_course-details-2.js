@@ -1,10 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const BASE_URL = "http://127.0.0.1:8000";
+
     // URL에서 major ID 추출
     const pathSegments = window.location.pathname.split('/');
     const majorId = pathSegments[pathSegments.length - 1];
 
+    function getAccessToken() {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [name, value] = cookie.trim().split('=');
+            if (name === 'access') {  // 'access' 쿠키를 찾습니다
+                return decodeURIComponent(value);
+            }
+        }
+        return null;
+    }
+
+
     // Django 백엔드에서 major 세부 정보 가져오기
-    fetch(`http://127.0.0.1:8000/courses/major-categories/${majorId}/`)
+    fetch(`${BASE_URL}/courses/major-categories/${majorId}/`)
         .then(response => response.json())
         .then(major_categories => {
             // 가져온 데이터로 페이지 내용 업데이트
@@ -16,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span>${major_categories.price}</span>
                         </div>
                         <div class="tp-course-details-2-widget-btn">
-                            <a href="course-with-filter.html">강의 구매하기</a>
+                            <a href="#" id="paymentButton">강의 구매하기</a>
                         </div>
 
                         <div class="tp-course-details-2-widget-list">
@@ -43,10 +57,94 @@ document.addEventListener('DOMContentLoaded', function() {
 
             `;
             
-            majorCourseTitleElement.innerHTML = `<h3 class="tp-course-details-2-title">${major_categories.name}</h3>`
+            majorCourseTitleElement.innerHTML = `<h3 class="tp-course-details-2-title">${major_categories.name}</h3>`;
+
+        $('#paymentButton').click(function() {
+                const accessToken = getAccessToken();
+                if (!accessToken) {
+                    alert('로그인이 필요합니다.');
+                    // 로그인 페이지로 리다이렉트 또는 로그인 모달 표시
+                    window.location.href = '/login/';  // 로그인 페이지 URL을 적절히 수정하세요
+                    return;
+                }
+
+                $.ajax({
+                    url: `${BASE_URL}/payment/info/${majorId}/`,
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    success: function(paymentInfo) {
+                        console.log('결제정보>>>>', paymentInfo);
+
+                        var IMP = window.IMP;
+                        IMP.init(paymentInfo.imp_key);
+
+                        IMP.request_pay({
+                            pg: 'html5_inicis',
+                            pay_method: 'card',
+                            merchant_uid: 'merchant_' + new Date().getTime(),
+                            name: paymentInfo.major_category_name,
+                            amount: paymentInfo.major_category_price,
+                        }, function(rsp) {
+                            console.log('아임포트 결제 응답>>>>', rsp);
+                            if (rsp.success) {
+                                verifyPayment(rsp, paymentInfo, accessToken);
+                            } else {
+                                console.error('Payment failed:', rsp);
+                                alert('Payment failed: ' + rsp.error_msg);
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Failed to get payment information:', error);
+                        if (xhr.status === 401) {
+                            alert('인증이 만료되었습니다. 다시 로그인해주세요.');
+                            window.location.href = '/login/';  // 로그인 페이지 URL을 적절히 수정하세요
+                        } else {
+                            alert('Failed to get payment information');
+                        }
+                    }
+                });
+            });
         })
         .catch(error => {
             console.error('Error fetching major details:', error);
             document.getElementById('course-details-card').innerHTML = '<p>정보를 불러오는 데 실패했습니다.</p>';
         });
+        function verifyPayment(rsp, paymentInfo, accessToken) {
+            const dataToSend = {
+                imp_uid: rsp.imp_uid, 
+                merchant_uid: rsp.merchant_uid, 
+                major_category_id: paymentInfo.major_category_id, 
+                total_amount: Math.round(rsp.paid_amount), 
+                payment_status: rsp.status,
+                user_id: paymentInfo.user_id,
+            };
+            console.log('Data to send:', dataToSend);
+        
+            $.ajax({
+                url: `${BASE_URL}/payment/complete/`,
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(dataToSend),
+                success: function(response) {
+                    console.log('Payment verification successful:', response);
+                    alert('Payment completed successfully');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Payment verification failed:', error);
+                    if (xhr.status === 401) {
+                        alert('인증이 만료되었습니다. 다시 로그인해주세요.');
+                        window.location.href = '/login/';  // 로그인 페이지 URL을 적절히 수정하세요
+                    } else {
+                        alert('Payment verification failed');
+                    }
+                }
+            });
+        }
 });
+
