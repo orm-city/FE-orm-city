@@ -1,4 +1,4 @@
-const baseurl = 'http://127.0.0.1:8000';
+import { baseurl } from './config.js';
 
 // API에서 Minor Category와 그에 속한 Video를 가져와 동적으로 HTML에 추가하는 함수
 async function fetchMinorCategories(majorCategoryId) {

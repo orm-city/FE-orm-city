@@ -1,4 +1,4 @@
-const baseurl = 'http://127.0.0.1:8000';
+import { baseurl } from './config.js';
 
 // 쿠키에서 JWT 토큰 가져오기
 function getCookie(name) {
