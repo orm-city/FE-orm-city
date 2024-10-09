@@ -31,10 +31,17 @@ document.addEventListener("DOMContentLoaded", function() {
       authLink.addEventListener("click", async function(event) {
          event.preventDefault();
          // 로그아웃 API 호출
+         const accessToken = getCookie('access');
+         const refreshToken = getCookie('refresh');
          try {
             const logoutResponse = await fetch(`${baseurl}/accounts/logout/`, {
                method: 'POST',
+               headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${accessToken}`
+               },
                credentials: 'include',  // 쿠키 포함
+               body: JSON.stringify({ refresh_token: refreshToken })
             });
 
             if (logoutResponse.ok) {

@@ -6,6 +6,20 @@ function debugLog(message) {
 // 로그인 폼 제출 이벤트 리스너
 document.addEventListener('DOMContentLoaded', function() {
     debugLog('DOM Content Loaded');
+
+    // URL에서 query parameter로 redirect 값 가져오기
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect') || '/';  // 기본값으로 '/' 설정
+
+    // hidden input에 redirect 값 설정
+    const redirectInput = document.querySelector('input[name="redirectUrl"]');
+    if (redirectInput) {
+        redirectInput.value = redirectUrl;
+        debugLog(`Redirect URL set to: ${redirectUrl}`);
+    } else {
+        console.error('Redirect input not found');
+    }
+
     const loginForm = document.querySelector('.tp-login-input-form');
     if (loginForm) {
         debugLog('Login form found');
@@ -36,6 +50,7 @@ async function handleLogin(event) {
 
     const emailInput = document.querySelector('input[placeholder="Type your email or phone number"]');
     const passwordInput = document.querySelector('input[placeholder="Password"]');
+    const redirectInput = document.querySelector('input[name="redirectUrl"]');
 
     if (!emailInput || !passwordInput) {
         console.error('Email or password input not found');
@@ -44,6 +59,7 @@ async function handleLogin(event) {
 
     const email = emailInput.value;
     const password = passwordInput.value;
+    const redirectUrl = redirectInput.value || '/'; // 기본값으로 '/' 설정
 
     debugLog(`Attempting login with email: ${email}`);
 
@@ -62,13 +78,13 @@ async function handleLogin(event) {
     debugLog(`Response data: ${JSON.stringify(data)}`);
 
     if (response.ok) {
-        setCookie('access', data.access, 1);
-        setCookie('refresh', data.refresh, 1);
-        showMessage('로그인 성공!', 'success');
-        debugLog('Login successful');
-        setTimeout(() => {
-        window.location.href = '/';
-        }, 2000);
+            setCookie('access', data.access, 1);
+            setCookie('refresh', data.refresh, 1);
+            showMessage('로그인 성공!', 'success');
+            debugLog('Login successful');
+            setTimeout(() => {
+                window.location.href = redirectUrl;  // 로그인 성공 후 redirectUrl로 이동
+        }, 3000);
     } else {
         showMessage(data.detail || '로그인 실패. 다시 시도해주세요.', 'error');
         debugLog('Login failed');
