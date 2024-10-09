@@ -109,37 +109,9 @@
                      <div class="accordion" id="accordionExample">
 
 
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              Getting Started
-                              <span>2/2</span>
-                            </button>
-                          </h2>
-                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="tpd-continue-learning-body">
-                              <div class="tpd-continue-learning-body-item">
-                                 <a href="#" class="active">
-                                    <p>{minor.name}</p>
-
-                                     
-                                 </a>
-                                 <a href="#">
-                                    <p>{video.name1} </p>
-
-                                     <div class="time">
-                                       
-                                     </div>
-                                 </a>
-                                 <a href="#">
-                                    <p>{video.name2}</p>
-
-                                     
-                                 </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <div id="accordionExample">
+                           <!-- JavaScript로 채워질 내용 -->
+                         </div>
 
                      </div>
                   </div>
@@ -153,11 +125,10 @@
                            <path d="M6 11L1 6L6 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                            </svg>
                         </span></a>
-                         <p>Interior design concepts Masterclass</p>
+                         <p id="major-category-name"> {major-category-name}</p>
                      </div>
                      <div class="tpd-continue-learning-popup-main d-flex align-items-center">
-                        <p>Your Progress: 8 of 10 (80%)</p>
-                        <a href="course-details-2.html"><span class="crose"><svg class="svg-2" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <a id="backLink" href="course-details-2.html"><span class="crose"><svg class="svg-2" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                            <path d="M11 1L1 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                            <path d="M1 1L11 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                          </svg></span></a>
@@ -172,18 +143,10 @@
                     </div>                    
                      <div class="tpd-continue-learning-about-wrapper">
                         <h4>About Lesson</h4>
-                        <p>The five main components of language are phonemes, morphemes, lexemes, syntax, and context. <br>
-                           Along with grammar, semantics, and pragmatics,</p>
+                        <p id="videoDescription">{video.description}</p>
                      </div>
                      <div class="tpd-continue-learning-about-btn d-flex justify-content-center">
-                        <div class="prv"><a href="#"><span><svg width="15" height="10" viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path d="M2.25001 4.99988L13.5 4.99988" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                           <path d="M5.25 1.25L2.20711 4.29289C1.87378 4.62622 1.70711 4.79289 1.70711 5C1.70711 5.2071 1.87378 5.37377 2.20711 5.7071L5.25 8.74999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                         </svg></span> Previous</a></div>
-                        <div class="next"><a href="#">Next <span><svg width="15" height="10" viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path d="M12.75 4.99988L1.5 4.99988" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                           <path d="M9.75 1.25L12.7929 4.29289C13.1262 4.62622 13.2929 4.79289 13.2929 5C13.2929 5.2071 13.1262 5.37377 12.7929 5.7071L9.75 8.74999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                         </svg></span></a></div>
+                        
                      </div>
                   </div>
 
@@ -313,103 +276,7 @@
       <script src="/assets/js/flatpickr.js"></script>      
       <script src="/assets/js/ajax-form.js"></script>
       <script src="/assets/js/main.js"></script>
-      <script>
-         // 쿠키에서 accessToken 추출 함수
-         function getCookie(name) {
-             const value = `; ${document.cookie}`;
-             const parts = value.split(`; ${name}=`);
-             if (parts.length === 2) return parts.pop().split(';').shift();
-         }
-     
-         // 페이지 로드 시 비디오 자동 불러오기
-         document.addEventListener('DOMContentLoaded', async () => {
-             const accessToken = getCookie('access'); // 쿠키에서 accessToken 가져오기
-             if (!accessToken) {
-                 alert("You must log in first.");
-                 const currentPath = window.location.pathname;
-                 window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
-             }
-     
-             const videoId = 45; // 불러올 비디오 ID (임시로 설정한 ID)
-     
-             const retrieveResponse = await fetch(`http://127.0.0.1:8000/videos/${videoId}/`, {
-                 method: 'GET',
-                 headers: {
-                     'Content-Type': 'application/json',
-                     'Authorization': `Bearer ${accessToken}` // accessToken을 Authorization 헤더에 추가
-                 }
-             });
-     
-             if (!retrieveResponse.ok) {
-                 alert("Failed to load video.");
-                 window.location.href = '/';
-             }
-     
-             const retrieveData = await retrieveResponse.json();
-             const { video_url, last_position } = retrieveData;
-     
-             const videoElement = document.getElementById('videoPlayer');
-             videoElement.src = video_url;
-     
-             // 비디오 메타데이터가 로드된 후 현재 위치를 설정하고 진행률 업데이트 시작
-             videoElement.addEventListener('loadedmetadata', () => {
-                 videoElement.currentTime = last_position;
-                 document.getElementById('videoPlayerContainer').style.display = 'block';
-     
-                 if (progressInterval) {
-                     clearInterval(progressInterval);
-                 }
-     
-                 progressInterval = setInterval(updateProgress, 10000); // 10초마다 진행률 업데이트
-             });
-         });
-     
-         let progressInterval;
-     
-         // 자동으로 진행률을 서버로 업데이트하는 함수
-         async function updateProgress() {
-             const videoElement = document.getElementById('videoPlayer');
-             const accessToken = getCookie('access'); // 쿠키에서 accessToken 가져오기
-             const videoId = 45; // 불러올 비디오 ID와 동일하게 설정
-     
-             if (!accessToken || !videoElement) {
-                 return;
-             }
-     
-             const progressPercent = Math.round((videoElement.currentTime / videoElement.duration) * 100);
-             const timeSpent = Math.floor(videoElement.currentTime);
-             const lastPosition = Math.floor(videoElement.currentTime);
-             const requestData = {
-                 video_id: videoId,
-                 progress_percent: progressPercent,
-                 time_spent: timeSpent,
-                 last_position: lastPosition
-             };
-     
-             console.log(`Updating progress: ${progressPercent}% at position ${timeSpent} seconds`);
-     
-             const progressResponse = await fetch(`http://127.0.0.1:8000/videos/progress/${videoId}`, {
-                 method: 'POST',
-                 headers: {
-                     'Content-Type': 'application/json',
-                     'Authorization': `Bearer ${accessToken}` // accessToken을 Authorization 헤더에 추가
-                 },
-                 body: JSON.stringify(requestData)
-             });
-     
-             if (!progressResponse.ok) {
-                 const errorData = await progressResponse.json();
-                 console.error("Failed to update progress: ", errorData);
-             }
-         }
-     
-         // 비디오가 중단되거나 종료될 때 interval을 정리
-         window.addEventListener('beforeunload', () => {
-             if (progressInterval) {
-                 clearInterval(progressInterval);
-             }
-         });
-     </script>
+      <script type="module" src="/assets/js/study-page.js"></script>
      
 
    </body>
