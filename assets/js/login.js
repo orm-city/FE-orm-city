@@ -1,4 +1,6 @@
-  // 디버그 로그 함수
+import { baseurl } from './config.js';
+
+// 디버그 로그 함수
 function debugLog(message) {
     console.log(`[DEBUG] ${message}`);
 }
@@ -65,7 +67,7 @@ async function handleLogin(event) {
 
     try {
     debugLog('Sending login request');
-    const response = await fetch('http://127.0.0.1:8000/accounts/login/', {
+    const response = await fetch(`${baseurl}/accounts/login/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
