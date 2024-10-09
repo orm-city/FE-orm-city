@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
 */
 // 로그인 페이지
 app.get("/login", (req, res) => {
+  const redirectUrl = req.query.redirect || '/';
   res.sendFile(path.join(__dirname, "pages", "_login.html"));
 });
 
