@@ -1,4 +1,4 @@
-import { baseurl } from './config.js';
+import { BASE_URL } from './config.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const accessToken = getCookie('access');
@@ -43,7 +43,7 @@ function extractMajorIdFromUrl() {
 async function fetchAndSetMajorCategoryName(majorId) {
     const accessToken = getCookie('access'); // 쿠키에서 accessToken 가져오기
     try {
-        const response = await fetch(`${baseurl}/courses/major-categories/${majorId}/details/`, {
+        const response = await fetch(`${BASE_URL}/courses/major-categories/${majorId}/details/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ let progressInterval;
 // 5. 비디오 불러오기 및 설정
 async function loadVideo(videoId, accessToken) {
     try {
-        const retrieveResponse = await fetch(`${baseurl}/videos/${videoId}/`, {
+        const retrieveResponse = await fetch(`${BASE_URL}/videos/${videoId}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ function renderVideos(videos, accessToken) {
 // 7. API로 데이터를 받아와 HTML을 동적으로 채우고 첫 번째 비디오 자동 로드
 async function fetchAndRenderMinorCategories(majorId, accessToken) {
     try {
-        const response = await fetch(`${baseurl}/courses/minor-categories/by-major/${majorId}/`, {
+        const response = await fetch(`${BASE_URL}/courses/minor-categories/by-major/${majorId}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ async function updateProgress(videoId, accessToken) {
 
     console.log(`Updating progress: ${progressPercent}% at position ${timeSpent} seconds`);
 
-    const progressResponse = await fetch(`${baseurl}/videos/progress/${videoId}`, {
+    const progressResponse = await fetch(`${BASE_URL}/videos/progress/${videoId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

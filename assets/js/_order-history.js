@@ -1,4 +1,4 @@
-import { baseurl } from './config.js';
+import { BASE_URL } from './config.js';
 import { getAccessToken } from './_getCookieUtils.js';
 
 console.log('All cookies:', document.cookie);
@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
             throw new Error('Authentication required');
         }
         console.log("Access Token>>", accessToken);
+
         try {
-            const response = await fetch(`${baseurl}/payment/user-payments/`, {
+            const response = await fetch(`${BASE_URL}/payment/user-payments/`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
@@ -136,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const defaultReason = "고객 요청";
 
         try {
-            const paymentResponse = await fetch(`${baseurl}/payment/detail/${paymentId}/`, {
+            const paymentResponse = await fetch(`${BASE_URL}/payment/detail/${paymentId}/`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -148,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const paymentData = await paymentResponse.json();
 
-            const response = await fetch(`${baseurl}/payment/refund/${paymentId}/`, {
+            const response = await fetch(`${BASE_URL}/payment/refund/${paymentId}/`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -192,4 +193,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 결제 정보 로드 실행
     loadPaymentInfo();
 });
+
+
 
