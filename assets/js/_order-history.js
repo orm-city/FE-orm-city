@@ -1,33 +1,19 @@
-// import { baseurl } from './config.js';
+import { baseurl } from './config.js';
+import { getAccessToken } from './_getCookieUtils.js';
 
 console.log('All cookies:', document.cookie);
 
 document.addEventListener('DOMContentLoaded', function() {
-    function getAccessToken() {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            const [name, value] = cookie.trim().split('=');
-            console.log('Checking cookie:', name, value);
-            if (name === 'access') {
-                console.log('Access token found:', value);
-                return decodeURIComponent(value);
-            }
-        }
-        console.log('Access token not found in cookies');
-        return null;
-    }
-
-    const BASE_URL = 'http://localhost:8000';
     // 결제 정보를 가져오는 함수
     async function fetchPaymentInfo() {
         const accessToken = getAccessToken();
         if (!accessToken) {
-            console.error('Access token not found');
-            return;
+            console.error("Access Token not found");
+            throw new Error('Authentication required');
         }
-
+        console.log("Access Token>>", accessToken);
         try {
-            const response = await fetch(`${BASE_URL}/payment/user-payments/`, {
+            const response = await fetch(`${baseurl}/payment/user-payments/`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
@@ -39,10 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Network response was not ok');
             }
 
-            const data = await response.json();
-            return data;  // 여러 결제 정보 배열 반환
+            const paymentInfo = await response.json();
+            return paymentInfo;  // 여러 결제 정보 배열 반환
         } catch (error) {
             console.error('Error fetching payment info:', error);
+            throw error;
         }
     }
 
@@ -149,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const defaultReason = "고객 요청";
 
         try {
-            const paymentResponse = await fetch(`${BASE_URL}/payment/detail/${paymentId}/`, {
+            const paymentResponse = await fetch(`${baseurl}/payment/detail/${paymentId}/`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -161,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const paymentData = await paymentResponse.json();
 
-            const response = await fetch(`${BASE_URL}/payment/refund/${paymentId}/`, {
+            const response = await fetch(`${baseurl}/payment/refund/${paymentId}/`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
