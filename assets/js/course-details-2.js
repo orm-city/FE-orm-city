@@ -1,21 +1,21 @@
-import { baseurl } from './config.js';
+import { BASE_URL } from './config.js';
 
 // API에서 Minor Category와 그에 속한 Video를 가져와 동적으로 HTML에 추가하는 함수
 async function fetchMinorCategories(majorCategoryId) {
     try {
        // API 요청
-       const response = await fetch(`${baseurl}/courses/minor-categories/by-major/${majorCategoryId}`);
+       const response = await fetch(`${BASE_URL}/courses/minor-categories/by-major/${majorCategoryId}`);
        const data = await response.json();
 
        // 응답에서 minor_categories 배열을 가져옴
        const minorCategories = data.minor_categories;
 
        // minor_categories가 빈 배열([])이면 404 페이지로 리디렉션
-       if (Array.isArray(minorCategories) && minorCategories.length === 0) {
-          // 404 페이지로 리디렉션
-          window.location.href = '/404';  // 404 페이지 경로로 리디렉션
-          return;
-       }
+      //  if (Array.isArray(minorCategories) && minorCategories.length === 0) {
+      //     // 404 페이지로 리디렉션
+      //     window.location.href = '/404';  // 404 페이지 경로로 리디렉션
+      //     return;
+      //  }
 
        // minor_categories가 배열일 경우만 처리
        if (Array.isArray(minorCategories)) {
@@ -64,7 +64,7 @@ async function fetchMinorCategories(majorCategoryId) {
  async function fetchTotalVideoCount(majorCategoryId) {
     try {
        // API 요청
-       const response = await fetch(`${baseurl}/courses/minor-categories/by-major/${majorCategoryId}`);
+       const response = await fetch(`${BASE_URL}/courses/major-categories/${majorCategoryId}/details/`);
        const data = await response.json();
 
        // 총 비디오 개수 가져오기
@@ -78,8 +78,16 @@ async function fetchMinorCategories(majorCategoryId) {
     }
  }
 
+
+ 
  // 페이지 로드 시 특정 major_category_id로 데이터 로드
- document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', async() => {
+   const accessToken = getCookie('access');
+    if (!accessToken) {
+        handleNotLoggedIn();
+        return;
+    }
+
     // 현재 페이지의 URL 경로 가져오기
     const path = window.location.pathname;
 
@@ -97,3 +105,17 @@ async function fetchMinorCategories(majorCategoryId) {
        console.error('URL에서 major_category_id를 찾을 수 없습니다.');
     }
  });
+
+// 쿠키에서 accessToken 추출 함수
+function getCookie(name) {
+   const value = `; ${document.cookie}`;
+   const parts = value.split(`; ${name}=`);
+   if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// 로그인이 안 되어 있을 때 처리하는 함수
+function handleNotLoggedIn() {
+   alert("You must log in first.");
+   const currentPath = window.location.pathname;
+   window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
+}
