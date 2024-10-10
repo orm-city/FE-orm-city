@@ -2,6 +2,7 @@ import { BASE_URL } from './config.js';
 import { getAccessToken } from './_getCookieUtils.js';
 
 const accessToken = getAccessToken();
+const majorId = extractMajorCategoryIdFromUrl();
 
 async function loadCourseDetails() {
     try {
@@ -11,7 +12,7 @@ async function loadCourseDetails() {
             return;
         }
 
-        const majorId = extractMajorCategoryIdFromUrl();
+
         if (!majorId) {
             console.error('URL에서 major_category_id를 찾을 수 없습니다.');
             return;
@@ -59,17 +60,14 @@ function updateDOM(major_categories) {
                  <div class="tp-course-details-2-widget-btn">
                      <a href="#" id="paymentButton">강의 구매하기</a>
                  </div>
-
                  <div class="tp-course-details-2-widget-list">
-                     <h5>This course includes:</h5>
-             
                      <div class="tp-course-details-2-widget-list-item-wrapper">
              
                          <div class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
                          <span> <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 1C12.6415 1 16 4.35775 16 8.5C16 12.6423 12.6415 16 8.5 16C4.35775 16 1 12.6423 1 8.5C1 4.35775 4.35775 1 8.5 1Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8692 8.49618C10.8692 7.85581 7.58703 5.80721 7.2147 6.17556C6.84237 6.54391 6.80657 10.4137 7.2147 10.8168C7.62283 11.2213 10.8692 9.13655 10.8692 8.49618Z" stroke="#4F5158" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                             </svg> Lectures</span>
+                             </svg><a href='/major/${majorId}/videos' >강의 보기</a></span>
                          <span id="total-videos-count">{비디오의 총 개수}</span>
                          </div>
                          <div class="tp-course-details-2-widget-list-item d-flex align-items-center justify-content-between">
