@@ -1,4 +1,4 @@
-import { baseurl } from './config.js';
+import { BASE_URL } from './config.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const accessToken = getCookie('access');
@@ -43,7 +43,7 @@ function extractMajorIdFromUrl() {
 async function fetchAndSetMajorCategoryName(majorId) {
     const accessToken = getCookie('access'); // 쿠키에서 accessToken 가져오기
     try {
-        const response = await fetch(`${baseurl}/courses/major-categories/${majorId}/details/`, {
+        const response = await fetch(`${BASE_URL}/courses/major-categories/${majorId}/details/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ let progressInterval;
 // 5. 비디오 불러오기 및 설정
 async function loadVideo(videoId, accessToken) {
     try {
-        const retrieveResponse = await fetch(`${baseurl}/videos/${videoId}/`, {
+        const retrieveResponse = await fetch(`${BASE_URL}/videos/${videoId}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ function renderVideos(videos, accessToken) {
     }
 
     return videos.map(video => `
-        <a href="#" onclick="handleVideoClick(${video.id}, '${accessToken}')">
+        <a href="#" class="video-link" data-video-id="${video.id}">
             <p>${video.name}</p>
             <div class="time">${video.duration}</div>
         </a>
@@ -126,7 +126,7 @@ function renderVideos(videos, accessToken) {
 // 7. API로 데이터를 받아와 HTML을 동적으로 채우고 첫 번째 비디오 자동 로드
 async function fetchAndRenderMinorCategories(majorId, accessToken) {
     try {
-        const response = await fetch(`${baseurl}/courses/minor-categories/by-major/${majorId}/`, {
+        const response = await fetch(`${BASE_URL}/courses/minor-categories/by-major/${majorId}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -171,6 +171,16 @@ async function fetchAndRenderMinorCategories(majorId, accessToken) {
                 loadVideo(firstVideoId, accessToken); // 첫 번째 비디오 로드
             }
         });
+
+        // 비디오 클릭 이벤트 핸들러 등록
+        document.querySelectorAll('.video-link').forEach(videoLink => {
+            videoLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                const videoId = this.getAttribute('data-video-id');
+                handleVideoClick(videoId, accessToken);
+            });
+        });
+
     } catch (error) {
         console.error("API 요청 중 오류 발생:", error);
     }
@@ -200,7 +210,7 @@ async function updateProgress(videoId, accessToken) {
 
     console.log(`Updating progress: ${progressPercent}% at position ${timeSpent} seconds`);
 
-    const progressResponse = await fetch(`${baseurl}/videos/progress/${videoId}`, {
+    const progressResponse = await fetch(`${BASE_URL}/videos/progress/${videoId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
