@@ -1,4 +1,4 @@
-import { baseurl } from './config.js';
+import { BASE_URL } from './config.js';
 
 // 디버그 로그 함수
 function debugLog(message) {
@@ -67,7 +67,7 @@ async function handleLogin(event) {
 
     try {
     debugLog('Sending login request');
-    const response = await fetch(`${baseurl}/accounts/login/`, {
+    const response = await fetch(`${BASE_URL}/accounts/login/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,9 +1,9 @@
-import { baseurl } from './config.js';
+import { BASE_URL } from './config.js';
 
 // API에서 데이터를 받아와 코스 항목을 생성하는 함수
 async function fetchMajorCategories() {
     try {
-      const response = await fetch(`${baseurl}/courses/major-categories/`);
+      const response = await fetch(`${BASE_URL}/courses/major-categories/`);
       const data = await response.json();
 
       // 받은 데이터를 기반으로 코스 항목 생성
@@ -17,7 +17,7 @@ async function fetchMajorCategories() {
             <div class="tp-course-item p-relative fix mb-30">
                 
                 <div class="tp-course-thumb">
-                  <a href="/major/${course.id}"><img class="course-pink" src="/assets/img/course/course-thumb-1.jpg" alt=""></a>
+                  <a href="/major/${course.id}"><img class="course-pink" src="/assets/img/course/course-thumb-${course.id}.jpg" alt=""></a>
                 </div>
                 <div class="tp-course-content">
                   <div class="tp-course-tag mb-10">
