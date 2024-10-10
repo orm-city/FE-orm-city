@@ -86,7 +86,7 @@ async function handleLogin(event) {
             debugLog('Login successful');
             setTimeout(() => {
                 window.location.href = redirectUrl;  // 로그인 성공 후 redirectUrl로 이동
-        }, 3000);
+        }, 1000);
     } else {
         showMessage(data.detail || '로그인 실패. 다시 시도해주세요.', 'error');
         debugLog('Login failed');
