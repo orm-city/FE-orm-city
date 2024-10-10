@@ -1,4 +1,4 @@
-import { baseurl } from './config.js';
+import { BASE_URL } from './config.js';
 
 // 쿠키에서 JWT 토큰 가져오기
 function getCookie(name) {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
          const accessToken = getCookie('access');
          const refreshToken = getCookie('refresh');
          try {
-            const logoutResponse = await fetch(`${baseurl}/accounts/logout/`, {
+            const logoutResponse = await fetch(`${BASE_URL}/accounts/logout/`, {
                method: 'POST',
                headers: {
                   'Content-Type': 'application/json',
