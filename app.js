@@ -58,6 +58,38 @@ app.get("/my-course/edit", (req, res) => {
   ====================end============================
 */
 
+/*
+  my profile page sidebar menu
+  ====================start=========================
+*/
+app.get("/my-dashboard", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-dashboard.html"));
+});
+
+app.get("/course-mission", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-my-quiz.html"));
+});
+
+app.get("/course-progress", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-enroll-course.html"));
+});
+
+app.get("/admin-dashbord", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-analytics-overview.html"));
+});
+
+app.get("/certification", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-certificate.html"));
+});
+
+app.get("/edit-profile", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-setting-profile.html"));
+});
+/*
+  my profile page sidebar menu
+  ====================end=========================
+*/
+
 // 동적 라우팅 설정: /major/:id 경로 처리
 app.get("/major/:id", (req, res) => {
     const majorId = req.params.id;
