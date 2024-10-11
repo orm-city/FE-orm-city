@@ -21,10 +21,6 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_index.html"));
 });
 
-/*
-  header user menu
-  ====================start=========================
-*/
 // 로그인 페이지
 app.get("/login", (req, res) => {
     const redirectUrl = req.query.redirect || "/";
@@ -36,59 +32,52 @@ app.get("/profile", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-profile.html"));
 });
 
+// 수강 등록(어드민) 
 app.get("/my-enroll-course", (req, res) => {
     res.sendFile(
         path.join(__dirname, "pages", "_instructor-enroll-course.html")
     );
 });
 
+// 나의 수강
 app.get("/my-course", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-my-course.html"));
 });
 
+// 구매내역
 app.get("/my-orders", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-order.html"));
 });
 
+// 수강 정보 수정
 app.get("/my-course/edit", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-course-edit.html"));
 });
-/*
-  header user box
-  ====================end============================
-*/
 
-/*
-  my profile page sidebar menu
-  ====================start=========================
-*/
+// 학생 대시보드
 app.get("/my-dashboard", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-dashboard.html"));
 });
 
+// 미션 페이지
 app.get("/course-mission", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-my-quiz.html"));
 });
 
-app.get("/course-progress", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "_instructor-enroll-course.html"));
-});
-
+// 어드민 대시보드
 app.get("/admin-dashbord", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-analytics-overview.html"));
 });
 
+// 수료증
 app.get("/certification", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-certificate.html"));
 });
 
+// 프로필 편집
 app.get("/edit-profile", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-setting-profile.html"));
 });
-/*
-  my profile page sidebar menu
-  ====================end=========================
-*/
 
 // 동적 라우팅 설정: /major/:id 경로 처리
 app.get("/major/:id", (req, res) => {
