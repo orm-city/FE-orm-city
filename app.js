@@ -53,22 +53,37 @@ app.get("/my-orders", (req, res) => {
 app.get("/my-course/edit", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-course-edit.html"));
 });
+
+// 수료증 페이지
+app.get("/certificate", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_instructor-certificate.html"));
+});
+
+// 수료증 진위 확인 페이지
+app.get("/certificate/verify", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_certificate-verify.html"));
+});
+
 /*
   header user box
   ====================end============================
 */
 
-// 동적 라우팅 설정: /major/:id 경로 처리
+// 커리큘럼을 보여주는 페이지  // 동적 라우팅 설정: /major/:id 경로 처리 
 app.get("/major/:id", (req, res) => {
     const majorId = req.params.id;
     res.sendFile(path.join(__dirname, "pages", "_course-details-2.html"));
 });
 
-// 동적 라우팅 설정: /major/:id/videos 경로 처리
+// 강의를 보여주는 페이지  // 동적 라우팅 설정: /major/:id/videos 경로 처리 
 app.get("/major/:id/videos", (req, res) => {
     const majorId = req.params.id;
     res.sendFile(path.join(__dirname, "pages", "_study-page.html"));
 });
+
+/*
+    에러처리
+*/
 
 // 404 처리 핸들러 (라우트가 없을 때)
 app.use((req, res, next) => {
