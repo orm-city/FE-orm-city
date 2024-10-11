@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 // 정적 파일을 제공하기 위한 설정
 console.log(__dirname);
 app.use("/assets", express.static(path.join(__dirname, "assets"))); // path.join : 운영체제마다 '/' 표현이 달라서 통합해주는 개념
-
+app.use('/pages', express.static(path.join(__dirname, 'pages')));
 // 기본 페이지 라우팅
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_index.html"));

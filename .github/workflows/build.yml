@@ -1,0 +1,26 @@
+name: Create envfile
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - id: commit
+      uses: pr-mpt/actions-commit-hash@v2
+
+    - name: Build and Push to Docker Hub
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: ${{ secrets.DOCKER_HUB_USERNAME}}/orm-city
+        tags: ${{ steps.commit.outputs.short }}, latest
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
