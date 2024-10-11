@@ -53,6 +53,10 @@ app.get("/my-orders", (req, res) => {
 app.get("/my-course/edit", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-course-edit.html"));
 });
+
+app.get("/course", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_course-categories.html"));
+});
 /*
   header user box
   ====================end============================

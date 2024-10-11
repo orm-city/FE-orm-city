@@ -1,4 +1,4 @@
-import { baseurl } from "./config.js";
+import { BASE_URL } from "./config.js";
 
 document.addEventListener("DOMContentLoaded", initializePage);
 
