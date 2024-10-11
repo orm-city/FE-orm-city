@@ -18,7 +18,7 @@ jobs:
     - name: Build and Push to Docker Hub
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        image: ${{ secrets.DOCKER_HUB_USERNAME}}/orm-city
+        image: ${{ secrets.DOCKER_HUB_USERNAME}}/fe-orm-city
         tags: ${{ steps.commit.outputs.short }}, latest
         registry: docker.io
         dockerfile: Dockerfile
