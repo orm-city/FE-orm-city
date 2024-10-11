@@ -71,7 +71,7 @@ app.get("/course-mission", (req, res) => {
 });
 
 app.get("/course-progress", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "instructor-enroll-course.html"));
+    res.sendFile(path.join(__dirname, "pages", "_instructor-enroll-course.html"));
 });
 
 app.get("/admin-dashbord", (req, res) => {
