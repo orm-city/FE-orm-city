@@ -85,6 +85,11 @@ app.get("/edit-profile", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-setting-profile.html"));
 });
 
+// 비밀번호 변경
+app.get("/change-password", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-setting-password.html"));
+});
+
 // 회원가입
 app.get("/register", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_register.html"));

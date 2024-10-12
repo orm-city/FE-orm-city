@@ -22,6 +22,7 @@
    <link rel="stylesheet" href="/assets/css/spacing.css">
    <link rel="stylesheet" href="/assets/css/main.css">
    <link rel="stylesheet" href="/assets/css/common.css">
+   <link rel="stylesheet" href="/assets/css/userProfile.css">
 </head>
 
    <body>
@@ -562,39 +563,8 @@
    
          <!-- dashboard-banner-area-start -->
          <section class="tp-dashboard-banner-wrap">
-            <div class="tp-dashboard-banner-shape"><img src="/assets/img/dashboard/bg/dashboard-bg-shape-1.jpg" alt=""></div>
-            <div class="container">
-               <div class="row">
-                  <div class="col-lg-12">
-                     <!-- <div class="tp-dashboard-banner-bg mt-30" data-background="/assets/img/dashboard/bg/dashboard-bg-1.jpg"> -->
-                        <div class="tp-instructor-wrap d-flex justify-content-between">
-                           <div class="tp-instructor-info d-flex">
-                              <div class="tp-instructor-avatar">
-                                 <img src="/assets/img/dashboard/profile/dashboard-profile.jpg" alt="">
-                              </div>
-                              <div class="tp-instructor-content">
-                                 <h4 class="tp-instructor-title">Indigo Violet</h4>
-                                 <div class="tp-instructor-rate  d-flex align-items-center">
-                                    <div class="tp-instructor-rating">
-                                       <i class="fa-solid fa-star"></i>
-                                       <i class="fa-solid fa-star"></i>
-                                       <i class="fa-solid fa-star"></i>
-                                       <i class="fa-solid fa-star"></i>
-                                       <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <span>4.61</span>
-                                    <span>(18 Ratings)</span>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="tp-instructor-course-btn">
-                              <a class="tp-btn-add-course" href="instructor-create-new-course.html"><i class="fa-regular fa-plus"></i> Create a New Course</a>
-                           </div>
-                        </div>
-                     <!-- </div> -->
-                  </div>
-               </div>
-            </div>
+            <div class="tp-dashboard-banner-shape"><img src="assets/img/dashboard/bg/dashboard-bg-shape-1.jpg" alt=""></div>
+
          </section>
          <!-- dashboard-banner-area-end -->
 
@@ -810,7 +780,7 @@
                                     </li>
                                     <li class="tp-user-menu-title space-gap">User</li>
                                     <li>
-                                       <a href="instructor-setting-profile.html">
+                                       <a href="/edit-profile">
                                           <span>
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M7.60509 10.2644C6.32151 10.2644 5.2832 9.26439 5.2832 8.00839C5.2832 6.75239 6.32151 5.74438 7.60509 5.74438C8.88867 5.74438 9.90245 6.75239 9.90245 8.00839C9.90245 9.26439 8.88867 10.2644 7.60509 10.2644Z" fill="currentColor"/>
@@ -821,7 +791,7 @@
                                        </a>
                                     </li>
                                     <li>
-                                       <a href="index.html">
+                                       <a id="auth-link" href="#">
                                           <span>
                                              <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path opacity="0.4" d="M9.94863 0C10.3714 0 10.7222 0.341829 10.7222 0.773613V17.2264C10.7222 17.6492 10.3804 18 9.94863 18C4.65028 18 0.953125 14.3028 0.953125 9.0045C0.953125 3.70615 4.65927 0 9.94863 0Z" fill="currentColor"/>
@@ -867,12 +837,12 @@
                            <div class="row">
                               <div class="col-12">
                                  <div class="tp-profile-box">
-                                    <div class="tp-profile-wrap">
-                                       <ul>
+                              <div class="tp-profile-wrap" id="userProfileInfo">
+                                       <!-- <ul>
                                           <li>
                                              <div class="tp-profile-info d-flex">
                                                 <div class="tp-profile-info-tag">
-                                                   <span>Registration Date</span>
+                                                   <span>가입일자</span>
                                                 </div>
                                                 <div class="tp-profile-info-details">
                                                    <span>October 06, 2024  8:30 am</span>
@@ -882,27 +852,7 @@
                                           <li>
                                              <div class="tp-profile-info d-flex">
                                                 <div class="tp-profile-info-tag">
-                                                   <span>First Name</span>
-                                                </div>
-                                                <div class="tp-profile-info-details">
-                                                   <span>Indigo</span>
-                                                </div>
-                                             </div>
-                                          </li>
-                                          <li>
-                                             <div class="tp-profile-info d-flex">
-                                                <div class="tp-profile-info-tag">
-                                                   <span>Last Name</span>
-                                                </div>
-                                                <div class="tp-profile-info-details">
-                                                   <span>Violet</span>
-                                                </div>
-                                             </div>
-                                          </li>
-                                          <li>
-                                             <div class="tp-profile-info d-flex">
-                                                <div class="tp-profile-info-tag">
-                                                   <span>Username</span>
+                                                   <span>이름</span>
                                                 </div>
                                                 <div class="tp-profile-info-details">
                                                    <span>Instructor</span>
@@ -912,7 +862,7 @@
                                           <li>
                                              <div class="tp-profile-info d-flex">
                                                 <div class="tp-profile-info-tag">
-                                                   <span>Email</span>
+                                                   <span>닉네임</span>
                                                 </div>
                                                 <div class="tp-profile-info-details">
                                                    <span>example@gmail.com</span>
@@ -922,37 +872,15 @@
                                           <li>
                                              <div class="tp-profile-info d-flex">
                                                 <div class="tp-profile-info-tag">
-                                                   <span>Phone Number</span>
+                                                   <span>이메일</span>
                                                 </div>
                                                 <div class="tp-profile-info-details">
                                                    <span>+670 413 90 762</span>
                                                 </div>
                                              </div>
                                           </li>
-                                          <li>
-                                             <div class="tp-profile-info d-flex">
-                                                <div class="tp-profile-info-tag">
-                                                   <span>Skill/Occupation</span>
-                                                </div>
-                                                <div class="tp-profile-info-details">
-                                                   <span>Full Stack Developer</span>
-                                                </div>
-                                             </div>
-                                          </li>
-                                          <li>
-                                             <div class="tp-profile-info d-flex">
-                                                <div class="tp-profile-info-tag">
-                                                   <span>Biography</span>
-                                                </div>
-                                                <div class="tp-profile-info-details">
-                                                   <span class="details-zone">I have a degree in Journalism with over 15 years of work experience in the field.
-                                                      Throughout the years, I have worked in several well-known institutions and
-                                                      published several books on that are available.</span>
-                                                </div>
-                                             </div>
-                                          </li>
-                                       </ul>
-                                    </div>
+                                       </ul> -->
+                                    </div> 
                                  </div>
                               </div>
                            </div>
@@ -1088,6 +1016,8 @@
       <script src="/assets/js/flatpickr.js"></script>      
       <script src="/assets/js/ajax-form.js"></script>
       <script src="/assets/js/main.js"></script>
+      <script type="module" src="/assets/js/check-login.js"></script>
+      <script type="module" src="/assets/js/_userProfileInfo.js"></script>  
 
    </body>
 
