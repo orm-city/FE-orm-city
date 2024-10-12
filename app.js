@@ -49,8 +49,8 @@ app.get("/my-orders", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-order.html"));
 });
 
-// 수강 정보 수정
-app.get("/my-course/edit", (req, res) => {
+// major 등록
+app.get("/course-create", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-course-edit.html"));
 });
 
@@ -69,7 +69,7 @@ app.get("/mission", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-assignment.html"));
 });
 
-
+// 강의 카테고리 보기 
 app.get("/course", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_course-categories.html"));
 });
@@ -115,6 +115,13 @@ app.get("/major/:id/videos", (req, res) => {
     const majorId = req.params.id;
     res.sendFile(path.join(__dirname, "pages", "_study-page.html"));
 });
+
+// minor 강의 등록
+app.get("/minor-create", (req, res) => {
+    const majorId = req.params.id;
+    res.sendFile(path.join(__dirname, "pages", "_minor-course-create.html"));
+});
+
 
 /*
     에러처리
