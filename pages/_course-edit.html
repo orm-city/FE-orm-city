@@ -554,77 +554,59 @@
          <!-- dashboard-accordion-area-start -->
          <section class="dashboard-accordion-area mt-20 pb-120 p-relative z-index-1">
             <div class="container">
-               <div class="row">
-                  <div class="col-lg-8">
-                     <div class="tpd-accordion">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                           <div class="accordion-item">
-                             <h2 class="accordion-header">
-                               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                 Minor 강의 등록
-                               </button>
-                             </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body course-edit">
-                                <form id="minorCategoryForm">
-                                <div class="tpd-new-course-box-1">
-                                    <div class="tpd-input">
-                                        <label for="courseTitle">강의명</label>
-                                        <input type="text" id="courseTitle" name="name" placeholder="강의명" required>
-                                    </div>
-                                    <div class="tpd-input">
-                                        <label for="courseContent">강의 설명</label>
-                                        <input type="text" id="courseContent" name="courseContent" placeholder="강의 설명" required>
-                                    </div>
-                                    <div class="tpd-input">
-                                        <label for="coursePrice">순서</label>
-                                        <input type="text" id="courseOrder" name="courseOrder" placeholder="순서" required>
-                                    </div>
-                            </div>
-                            <button class="tp-btn-inner" type="submit">Minor 강의 등록</button>
-                          </form>
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="tpd-accordion">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Major 강의 수정
+                          </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body course-edit">
+                            <form id="majorCourseForm">
+                              <div class="tpd-new-course-box-1">
+                                <div class="tpd-input">
+                                  <label for="majorTitle">Major 이름</label>
+                                  <input type="text" id="majorTitle" name="name" placeholder="Major 이름" required>
+                                </div>
+                                <div class="tpd-input">
+                                  <label for="majorPrice">강의 금액</label>
+                                  <input type="number" id="majorPrice" name="price" placeholder="강의 금액" required>
+                                </div>
+                              </div>
+                              <button type="submit" class="tp-btn-inner">Major 강의 수정</button>
+                            </form>
+                          </div>
                         </div>
                       </div>
-                           </div>
-                           <div class="accordion-item">
-                             <h2 class="accordion-header">
-
-                             </h2>
-                             <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                               <div class="accordion-body course-edit">
-                                 <div class="tpd-new-course-box-1">
-                                    <div class="tpd-input">
-                                       <label>What Will I Learn?</label>
-                                       <textarea placeholder="Write here the course benefits (One per line)"></textarea>
-                                    </div>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-4">
-                     <div class="tpd-dashboard-course-edit-box">
-                        <div class="tp-dashboard-section">
-                           <h2 class="tp-dashboard-title">Major 분류</h2>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Minor 강의 목록
+                          </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                            <form id="minorCoursesForm">
+                              <div id="minorCourseList">
+                                <!-- Minor 강의 목록이 여기에 동적으로 추가됩니다 -->
+                              </div>
+                            </form>
+                            <div>
+                              <a id="addMinorButton" class="tp-btn-inner" href="/minor-create">Minor 강의 추가</a>
+                            </div>
+                          </div>
                         </div>
-                        <div class="tpd-dashboard-course-edit mb-30">
-                           <div class="tp-course-filter-select">
-                              <select class="wide" id="majorCategorySelect">
-                                <!--  <option value="Default">대분류 코스 선택</option>
-                                 <option value="Latest">Graphic Design</option>
-                                 <option value="Popularity">Web Design</option>
-                                 <option value="Popularity">Interior design</option>
-                                 <option value="Popularity">Bootstrap 5 From Scratch</option> -->
-                              </select>
-                           </div>
-                        </div>
-                     </div>
+                      </div>
+                    </div>
                   </div>
-               </div>
+                </div>
+              </div>
             </div>
-         </section>
+          </section>
          <!-- dashboard-accordion-area-end -->
 
       </main>
@@ -747,9 +729,10 @@
       <script src="/assets/js/flatpickr.js"></script>      
       <script src="/assets/js/ajax-form.js"></script>
       <script src="/assets/js/main.js"></script>
-      <script type="module" src="/assets/js/_minor-create.js"></script>
-      
-
+      <script type="module" src="/assets/js/check-login.js"></script> <!--네비바 로그인, 로그아웃 로직-->
+      <script type="module" src="/assets/js/_switch_login.js"></script> 
+      <script type="module" src="/assets/js/_userInfo.js"></script>
+      <script type="module" src="/assets/js/admin-course-edit.js"></script>
    </body>
 
 </html>

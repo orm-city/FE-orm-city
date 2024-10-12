@@ -34,7 +34,7 @@ async function fetchMajorCategories() {
                   </div>
                 </div>
                 <div class="tp-course-btn home-2">
-                  <a href="/major/${course.id}">강의 정보 보기</a>
+                  <a href="/admin-course-edit/${course.id}">강의 정보 관리</a>
                 </div>
             </div>
           </div>`;

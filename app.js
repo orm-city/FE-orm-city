@@ -32,12 +32,6 @@ app.get("/profile", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-profile.html"));
 });
 
-// 수강 등록(어드민) 
-app.get("/my-enroll-course", (req, res) => {
-    res.sendFile(
-        path.join(__dirname, "pages", "_instructor-enroll-course.html")
-    );
-});
 
 // 나의 수강
 app.get("/my-course", (req, res) => {
@@ -49,10 +43,7 @@ app.get("/my-orders", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-order.html"));
 });
 
-// major 등록
-app.get("/course-create", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "_instructor-course-edit.html"));
-});
+
 
 // 수료증 페이지
 app.get("/certificate", (req, res) => {
@@ -84,11 +75,6 @@ app.get("/course-mission", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-my-quiz.html"));
 });
 
-// 어드민 대시보드
-app.get("/admin-dashbord", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "instructor-analytics-overview.html"));
-});
-
 // 수료증
 app.get("/certification", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-certificate.html"));
@@ -116,11 +102,44 @@ app.get("/major/:id/videos", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_study-page.html"));
 });
 
-// minor 강의 등록
+
+
+//=======Admin page - start=======
+
+// 1.어드민 대시보드
+app.get("/admin-dashbord", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-analytics-overview.html"));
+});
+
+
+// 2. major 등록
+app.get("/major-create", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_major-course-edit.html"));
+});
+
+
+// 3. minor 강의 등록
 app.get("/minor-create", (req, res) => {
     const majorId = req.params.id;
     res.sendFile(path.join(__dirname, "pages", "_minor-course-create.html"));
 });
+
+// 4. 등록 수강 목록
+app.get("/admin-enroll-course", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "pages", "_admin-enroll-course.html")
+    );
+});
+
+
+// major 등록수강 수정 
+app.get("/admin-course-edit/:id", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "pages", "_course-edit.html")
+    );
+});
+
+//========Admin page - end========
 
 
 /*
