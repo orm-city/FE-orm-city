@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 // 정적 파일을 제공하기 위한 설정
 console.log(__dirname);
 app.use("/assets", express.static(path.join(__dirname, "assets"))); // path.join : 운영체제마다 '/' 표현이 달라서 통합해주는 개념
-
+app.use('/pages', express.static(path.join(__dirname, 'pages')));
 // 기본 페이지 라우팅
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_index.html"));
@@ -54,7 +54,27 @@ app.get("/my-course/edit", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-course-edit.html"));
 });
 
-// 학생 대시보드
+// 수료증 페이지
+app.get("/certificate", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_instructor-certificate.html"));
+});
+
+// 수료증 진위 확인 페이지
+app.get("/certificate/verify", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_certificate-verify.html"));
+});
+
+// 미션 확인 페이지
+app.get("/mission", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_instructor-assignment.html"));
+});
+
+
+app.get("/course", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_course-categories.html"));
+});
+
+// 학생 대시보드(미정)
 app.get("/my-dashboard", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-dashboard.html"));
 });
@@ -90,11 +110,15 @@ app.get("/major/:id", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_course-details-2.html"));
 });
 
-// 동적 라우팅 설정: /major/:id/videos 경로 처리
+// 강의를 보여주는 페이지  // 동적 라우팅 설정: /major/:id/videos 경로 처리 
 app.get("/major/:id/videos", (req, res) => {
     const majorId = req.params.id;
     res.sendFile(path.join(__dirname, "pages", "_study-page.html"));
 });
+
+/*
+    에러처리
+*/
 
 // 404 처리 핸들러 (라우트가 없을 때)
 app.use((req, res, next) => {

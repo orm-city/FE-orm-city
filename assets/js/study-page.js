@@ -116,7 +116,7 @@ function renderVideos(videos, accessToken) {
     }
 
     return videos.map(video => `
-        <a href="#" onclick="handleVideoClick(${video.id}, '${accessToken}')">
+        <a href="#" class="video-link" data-video-id="${video.id}">
             <p>${video.name}</p>
             <div class="time">${video.duration}</div>
         </a>
@@ -171,6 +171,16 @@ async function fetchAndRenderMinorCategories(majorId, accessToken) {
                 loadVideo(firstVideoId, accessToken); // 첫 번째 비디오 로드
             }
         });
+
+        // 비디오 클릭 이벤트 핸들러 등록
+        document.querySelectorAll('.video-link').forEach(videoLink => {
+            videoLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                const videoId = this.getAttribute('data-video-id');
+                handleVideoClick(videoId, accessToken);
+            });
+        });
+
     } catch (error) {
         console.error("API 요청 중 오류 발생:", error);
     }
