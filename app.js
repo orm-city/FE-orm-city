@@ -79,6 +79,11 @@ app.get("/edit-profile", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-setting-profile.html"));
 });
 
+// 회원가입
+app.get("/register", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_register.html"));
+});
+
 // 동적 라우팅 설정: /major/:id 경로 처리
 app.get("/major/:id", (req, res) => {
     const majorId = req.params.id;
