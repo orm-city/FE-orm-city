@@ -66,8 +66,11 @@ function handleResponse(response) {
 
 function handlePublishSuccess(data) {
     console.log("Success:", data);
-    alert("Course published successfully!");
+    alert("Major코스 등록이 완료 되었습니다. Minor등록 페이지로 이동합니다.");
     clearInputFields();
+    setTimeout(() => {
+        window.location.href = '/minor-create';  // 로그인 성공 후 redirectUrl로 이동
+}, 1000);
 }
 
 function handlePublishError(error) {
