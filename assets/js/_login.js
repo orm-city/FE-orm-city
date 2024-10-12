@@ -50,8 +50,8 @@ async function handleLogin(event) {
     event.preventDefault();
     debugLog('Login handler called');
 
-    const emailInput = document.querySelector('input[placeholder="Type your email or phone number"]');
-    const passwordInput = document.querySelector('input[placeholder="Password"]');
+    const emailInput = document.querySelector('input[placeholder="이메일 입력"]');
+    const passwordInput = document.querySelector('input[placeholder="비밀번호 입력"]');
     const redirectInput = document.querySelector('input[name="redirectUrl"]');
 
     if (!emailInput || !passwordInput) {
