@@ -59,7 +59,7 @@ async function fetchUserInfo() {
                     <span>이름</span>
                 </div>
                 <div class="tp-profile-info-details">
-                    <span>${userInfo.name || 'N/A'}</span>
+                    <span>${userInfo.username || 'N/A'}</span>
                 </div>
                 </div>
             </li>
