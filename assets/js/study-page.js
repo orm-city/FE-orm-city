@@ -110,17 +110,40 @@ async function loadVideo(videoId, accessToken) {
 }
 
 // 6. 비디오 목록을 HTML로 변환하고 클릭 이벤트 처리
-function renderVideos(videos, accessToken) {
+function renderVideos(videos, majorId, minorId, accessToken) {
     if (videos.length === 0) {
         return '<p>비디오가 없습니다.</p>';
     }
 
-    return videos.map(video => `
-        <a href="#" class="video-link" data-video-id="${video.id}">
-            <p>${video.name}</p>
-            <div class="time">${video.duration}</div>
-        </a>
-    `).join('');
+    const midIndex = Math.ceil(videos.length / 2);
+    return videos.map((video, index) => {
+        let linkHtml = `
+            <a href="#" class="video-link" data-video-id="${video.id}">
+                <p>${video.name}</p>
+                <div class="time">${video.duration}</div>
+            </a>
+        `;
+
+        // 중간 미션 링크 추가
+        if (index === midIndex) {
+            linkHtml += `
+                <a href="/major/${majorId}/${minorId}/mid" class="mission-link">
+                    <p>중간 미션</p>
+                </a>
+            `;
+        }
+
+        // 마지막 비디오 다음에 기말 미션 링크 추가
+        if (index === videos.length - 1) {
+            linkHtml += `
+                <a href="/major/${majorId}/${minorId}/final" class="mission-link">
+                    <p>기말 미션</p>
+                </a>
+            `;
+        }
+
+        return linkHtml;
+    }).join('');
 }
 
 // 7. API로 데이터를 받아와 HTML을 동적으로 채우고 첫 번째 비디오 자동 로드
@@ -157,7 +180,7 @@ async function fetchAndRenderMinorCategories(majorId, accessToken) {
                 <div id="${minorCategoryId}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" aria-labelledby="${minorCategoryHeadingId}" data-bs-parent="#accordionExample">
                     <div class="tpd-continue-learning-body">
                         <div class="tpd-continue-learning-body-item" id="video-list-${minorCategory.id}">
-                            ${renderVideos(minorCategory.videos, accessToken)}
+                            ${renderVideos(minorCategory.videos, majorId, minorCategory.id, accessToken)}
                         </div>
                     </div>
                 </div>

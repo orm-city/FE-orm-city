@@ -54,12 +54,6 @@ app.get("/my-course/edit", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-course-edit.html"));
 });
 
-
-// 수료증 페이지
-app.get("/certificate", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "_instructor-certificate.html"));
-});
-
 // 수료증 진위 확인 페이지
 app.get("/certificate/verify", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_certificate-verify.html"));
@@ -102,8 +96,9 @@ app.get("/admin-dashbord", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-analytics-overview.html"));
 });
 
-app.get("/certification", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "instructor-certificate.html"));
+// 수료증 페이지
+app.get("/certificate", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_instructor-certificate.html"));
 });
 
 app.get("/edit-profile", (req, res) => {
@@ -126,6 +121,25 @@ app.get("/major/:id/videos", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_study-page.html"));
 });
 
+// 중간, 기말 과목을 보여주는 경로 동적 라우팅 설정
+app.get("/major/:id/:minor_id/:exam_type", (req, res) => {
+    const majorId = req.params.id;
+    const minorId = parseInt(req.params.minor_id);
+    const examType = req.params.exam_type;
+
+    // minor_id가 숫자가 아닌 경우 에러 처리
+    if (isNaN(minorId)) {
+        return res.status(400).send("minor_id는 숫자여야 합니다.");
+    }
+
+    // exam_type이 "mid" 또는 "final"이 아닌 경우 에러 처리
+    if (examType !== "mid" && examType !== "final") {
+        return res.status(400).send('exam_type은 "mid" 또는 "final"이어야 합니다.');
+    }
+
+    // 정상적인 경우 해당 페이지 반환
+    res.sendFile(path.join(__dirname, "pages", `_mission-list.html`));
+});
 /*
     에러처리
 */
