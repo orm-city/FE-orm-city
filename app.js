@@ -54,6 +54,7 @@ app.get("/my-course/edit", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-course-edit.html"));
 });
 
+
 // 수료증 페이지
 app.get("/certificate", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-certificate.html"));
@@ -69,12 +70,51 @@ app.get("/mission", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-assignment.html"));
 });
 
+
+app.get("/course", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_course-categories.html"));
+});
+
 /*
   header user box
   ====================end============================
 */
 
-// 커리큘럼을 보여주는 페이지  // 동적 라우팅 설정: /major/:id 경로 처리 
+
+
+/*
+  my profile page sidebar menu
+  ====================start=========================
+*/
+app.get("/my-dashboard", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-dashboard.html"));
+});
+
+app.get("/course-mission", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-my-quiz.html"));
+});
+
+app.get("/course-progress", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_instructor-enroll-course.html"));
+});
+
+app.get("/admin-dashbord", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-analytics-overview.html"));
+});
+
+app.get("/certification", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-certificate.html"));
+});
+
+app.get("/edit-profile", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "instructor-setting-profile.html"));
+});
+/*
+  my profile page sidebar menu
+  ====================end=========================
+*/
+
+// 동적 라우팅 설정: /major/:id 경로 처리
 app.get("/major/:id", (req, res) => {
     const majorId = req.params.id;
     res.sendFile(path.join(__dirname, "pages", "_course-details-2.html"));
