@@ -64,6 +64,11 @@ app.get("/certificate/verify", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_certificate-verify.html"));
 });
 
+// 미션 확인 페이지
+app.get("/mission", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_instructor-assignment.html"));
+});
+
 /*
   header user box
   ====================end============================
