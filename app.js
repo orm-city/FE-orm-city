@@ -116,6 +116,7 @@ app.get("/admin-dashbord", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-analytics-overview.html"));
 });
 
+
 // 수료증 페이지
 app.get("/certificate", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_instructor-certificate.html"));
