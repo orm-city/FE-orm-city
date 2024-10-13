@@ -97,9 +97,14 @@ app.get("/my-dashboard", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "instructor-dashboard.html"));
 });
 
-// 미션 페이지
+// 미션 제출 내역
 app.get("/course-mission", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "instructor-my-quiz.html"));
+    res.sendFile(path.join(__dirname, "pages", "_instructor-my-quiz.html"));
+});
+
+// 미션 제출 내역 전체 (어드민)
+app.get("/course-mission/admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_instructor-my-quiz.html"));
 });
 
 
