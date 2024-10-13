@@ -61,7 +61,7 @@ app.get("/certificate/verify", (req, res) => {
 
 // 미션 확인 페이지
 app.get("/mission", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "_instructor-assignment.html"));
+    res.sendFile(path.join(__dirname, "pages", "_quiz-list-manager.html"));
 });
 
 
@@ -69,6 +69,26 @@ app.get("/course", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "_course-categories.html"));
 });
 
+// 객관식 문제 생성
+app.get("/mcqs", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_edit-mcqs.html"));
+});
+// 객관식 문제 편집
+app.get("/mcqs/:id", (req, res) => {
+    const mcqsId = req.params.id;
+    res.sendFile(path.join(__dirname, "pages", "_edit-mcqs.html"));
+});
+
+
+// 코드 제출형 문제 생성
+app.get("/code-submissions", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_edit-code-submissions.html"));
+});
+// 코드 제출형 문제 편집
+app.get("/code-submissions/:id", (req, res) => {
+    const codesubmissionsId = req.params.id;
+    res.sendFile(path.join(__dirname, "pages", "_edit-code-submissions.html"));
+});
 /*
   header user box
   ====================end============================
@@ -138,8 +158,51 @@ app.get("/major/:id/:minor_id/:exam_type", (req, res) => {
     }
 
     // 정상적인 경우 해당 페이지 반환
-    res.sendFile(path.join(__dirname, "pages", `_mission-list.html`));
+    res.sendFile(path.join(__dirname, "pages", "_mission-list.html"));
 });
+
+// 객관식 문제 페이지 경로 설정
+app.get("/major/:id/:minor_id/:exam_type/mcqs/:question_id", (req, res) => {
+    const majorId = req.params.id;
+    const minorId = parseInt(req.params.minor_id);
+    const examType = req.params.exam_type;
+    const questionId = parseInt(req.params.question_id);
+
+    // minor_id나 question_id가 숫자가 아닌 경우 에러 처리
+    if (isNaN(minorId) || isNaN(questionId)) {
+        return res.status(400).send("minor_id와 question_id는 숫자여야 합니다.");
+    }
+
+    // exam_type이 "mid" 또는 "final"이 아닌 경우 에러 처리
+    if (examType !== "mid" && examType !== "final") {
+        return res.status(400).send('exam_type은 "mid" 또는 "final"이어야 합니다.');
+    }
+
+    // 정상적인 경우 객관식 페이지 반환
+    res.sendFile(path.join(__dirname, "pages", "_mcqs_question.html"));
+});
+
+// 주관식 문제 페이지 경로 설정
+app.get("/major/:id/:minor_id/:exam_type/cs/:question_id", (req, res) => {
+    const majorId = req.params.id;
+    const minorId = parseInt(req.params.minor_id);
+    const examType = req.params.exam_type;
+    const questionId = parseInt(req.params.question_id);
+
+    // minor_id나 question_id가 숫자가 아닌 경우 에러 처리
+    if (isNaN(minorId) || isNaN(questionId)) {
+        return res.status(400).send("minor_id와 question_id는 숫자여야 합니다.");
+    }
+
+    // exam_type이 "mid" 또는 "final"이 아닌 경우 에러 처리
+    if (examType !== "mid" && examType !== "final") {
+        return res.status(400).send('exam_type은 "mid" 또는 "final"이어야 합니다.');
+    }
+
+    // 정상적인 경우 주관식 페이지 반환
+    res.sendFile(path.join(__dirname, "pages", "_cs_question.html"));
+});
+
 /*
     에러처리
 */
