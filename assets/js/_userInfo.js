@@ -2,6 +2,17 @@ import { BASE_URL } from './config.js';
 import { getAccessToken } from './_getCookieUtils.js';
 
 const accessToken = getAccessToken();
+
+// 사용자 역할을 한글로 변환하는 함수
+function formatUserRole(role) {
+    const roleMap = {
+        'admin': '관리자',
+        'student': '학생',
+    };
+    
+    return roleMap[role] || role; // 매핑되지 않은 역할은 그대로 반환
+}
+
 async function fetchUserInfo() {
     try {
         if (!accessToken) {
@@ -28,7 +39,7 @@ async function fetchUserInfo() {
         const infoItem = `
         <div class="tp-header-user-profile-content" id="headerUserInfo">
             <h4>${userInfo.username}</h4>
-            <span>${userInfo.role}</span>
+             <span>${formatUserRole(userInfo.role)}</span>
         </div>`;
 
         headerUserInfo.innerHTML += infoItem;
