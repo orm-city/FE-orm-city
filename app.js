@@ -33,9 +33,13 @@ app.get("/profile", (req, res) => {
 });
 
 
-// 나의 수강
-app.get("/my-course", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "_instructor-my-course.html"));
+// 나의 수강 - 수강생
+app.get("/student-my-course", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_student-my-course.html"));
+});
+
+app.get("/student_active_course", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_student-my-course.html"));
 });
 
 // 구매내역
