@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
    if (jwtToken) {
       // access 토큰이 있으면 로그인 상태로 간주
-      authText.textContent = "Logout";
+      authText.textContent = "로그아웃";
 
       // 로그아웃 클릭 시 처리
       authLink.addEventListener("click", async function(event) {
@@ -59,6 +59,6 @@ document.addEventListener("DOMContentLoaded", function() {
    } else {
       // JWT 토큰이 없을 경우 로그인 페이지로 이동
       authLink.href = "/login";
-      authText.textContent = "Login";
+      authText.textContent = "로그인";
    }
 });

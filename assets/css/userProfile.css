@@ -1,0 +1,54 @@
+
+.tp-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* 기존 tp-btn 클래스 수정 */
+.tp-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 6px;
+}
+
+/* 호버 효과 */
+.tp-btn:hover {
+    background-color: #218838;
+}
+
+.col-lg-12.profileEdit{
+    text-align: center;
+}
+
+
+.editProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;  /* 또는 원하는 최대 너비 */
+    margin: 0 auto;    /* 좌우 마진을 auto로 설정하여 가운데 정렬 */
+    padding: 20px;     /* 선택적: 내부 여백 추가 */
+}
+
+/* 자식 요소들의 너비를 100%로 설정 */
+.editProfile .col-lg-6,
+.editProfile .col-lg-12 {
+    width: 100%;
+}
+
+/* 선택적: 반응형 디자인을 위한 미디어 쿼리 */
+@media (min-width: 992px) {
+    .editProfile {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .editProfile .col-lg-6 {
+        width: 50%;
+    }
+}
