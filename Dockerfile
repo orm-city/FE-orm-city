@@ -1,18 +1,32 @@
-# Step 1: Node.js 베이스 이미지 사용
-FROM node:14-alpine
+# Step 1: Build the Express app
+FROM node:18 AS build
 
-# Step 2: 앱 디렉토리 생성
-WORKDIR /usr/src/app
+# 작업 디렉토리 설정
+WORKDIR /app
 
-# Step 3: 패키지 설치
+# 의존성 파일 복사
 COPY package*.json ./
-RUN npm install --production
 
-# Step 4: 애플리케이션 파일 복사
+# 의존성 설치
+RUN npm install
+
+# 소스 코드 복사
 COPY . .
 
-# Step 5: 포트 노출
-EXPOSE 3000
+# Express 앱 빌드 (필요한 경우)
+#RUN npm run build
 
-# Step 6: 애플리케이션 시작
-CMD ["node", "app.js"]
+# Step 2: Setup Nginx with Express
+FROM nginx:alpine
+
+# Nginx 설정 파일 복사
+COPY nginx.config /etc/nginx/conf.d/default.conf
+
+# Express 애플리케이션 복사
+COPY --from=build /app /usr/share/nginx/html
+
+# 포트 노출
+EXPOSE 80
+
+# Nginx 실행
+CMD ["nginx", "-g", "daemon off;"]
