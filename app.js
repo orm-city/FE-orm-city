@@ -250,6 +250,22 @@ app.get("/admin-course-edit/:id", (req, res) => {
     );
 });
 
+// minor 동영상 수정 
+app.get("/admin-course-edit/:id/:minor_id", (req, res) => {
+    const majorId = req.params.id;
+    const minorId = parseInt(req.params.minor_id);
+    res.sendFile(
+        path.join(__dirname, "pages", "_video-edit.html")
+    );
+});
+
+// 비디오 생성
+app.get("/admin-course-edit/:id/:minor_id/create", (req, res) => {
+    const majorId = req.params.id;
+    const minorId = parseInt(req.params.minor_id);
+    res.sendFile(path.join(__dirname, "pages", "_admin-video-create.html"));
+});  
+
 //========Admin page - end========
 
 /*

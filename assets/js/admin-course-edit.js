@@ -45,7 +45,7 @@ async function fetchMajorCourseAndMinors(majorId) {
         document.getElementById('majorPrice').value = majorData.price;
 
         const minorData = await fetchMinorCourses(majorId);
-        renderMinorCourses(minorData);
+        renderMinorCourses(minorData, majorId);
     } catch (error) {
         console.error('Error fetching major course and minors:', error);
         alert('강의 정보를 불러오는 데 실패했습니다.');
@@ -131,7 +131,7 @@ async function updateMinorCourse(minorId, name, content, order, majorCategoryId)
 }
 
 
-function renderMinorCourses(minorCourses) {
+function renderMinorCourses(minorCourses, majorId) {
     const minorCourseList = document.getElementById('minorCourseList');
     minorCourseList.innerHTML = '';
 
@@ -139,8 +139,12 @@ function renderMinorCourses(minorCourses) {
         const minorElement = document.createElement('div');
         minorElement.className = 'minor-course-item';
         minorElement.dataset.id = minor.id;
+
         minorElement.innerHTML = `
             <h3>Minor 강의 #${index + 1}</h3>
+            <div>
+                <a class="tp-btn-inner" id="publishButton" href="/admin-course-edit/${majorId}/${minor.id}">동영상 관리</a>
+            </div>
             <div class="tpd-input">
                 <label for="minorName_${minor.id}">Minor 이름</label>
                 <input type="text" id="minorName_${minor.id}" name="name" value="${minor.name}" required>
