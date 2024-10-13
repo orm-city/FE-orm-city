@@ -80,17 +80,6 @@ app.get("/code-submissions/:id", (req, res) => {
     const codesubmissionsId = req.params.id;
     res.sendFile(path.join(__dirname, "pages", "_edit-code-submissions.html"));
 });
-/*
-  header user box
-  ====================end============================
-*/
-
-
-
-/*
-  my profile page sidebar menu
-  ====================start=========================
-*/
 
 // 학생 대시보드(미정)
 app.get("/my-dashboard", (req, res) => {

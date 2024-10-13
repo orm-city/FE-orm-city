@@ -56,45 +56,69 @@ async function handleLogin(event) {
 
     if (!emailInput || !passwordInput) {
         console.error('Email or password input not found');
-    return;
+        return;
     }
 
     const email = emailInput.value;
     const password = passwordInput.value;
-    const redirectUrl = redirectInput.value || '/'; // 기본값으로 '/' 설정
+    const redirectUrl = redirectInput ? redirectInput.value : '/'; // 기본값으로 '/' 설정
 
     debugLog(`Attempting login with email: ${email}`);
 
     try {
-    debugLog('Sending login request');
-    const response = await fetch(`${BASE_URL}/accounts/login/`, {
+        debugLog('Sending login request');
+        const response = await fetch(`${BASE_URL}/accounts/login/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ email, password }),
-    });
+        });
 
-    debugLog(`Response status: ${response.status}`);
-    const data = await response.json();
-    debugLog(`Response data: ${JSON.stringify(data)}`);
+        debugLog(`Response status: ${response.status}`);
+        const data = await response.json();
+        debugLog(`Response data: ${JSON.stringify(data)}`);
 
-    if (response.ok) {
+        if (response.ok) {
             setCookie('access', data.access, 1);
             setCookie('refresh', data.refresh, 1);
             showMessage('로그인 성공!', 'success');
             debugLog('Login successful');
             setTimeout(() => {
                 window.location.href = redirectUrl;  // 로그인 성공 후 redirectUrl로 이동
-        }, 1000);
-    } else {
-        showMessage(data.detail || '로그인 실패. 다시 시도해주세요.', 'error');
-        debugLog('Login failed');
-    }
+            }, 1000);
+        } else {
+            showMessage(data.detail || '로그인 실패. 다시 시도해주세요.', 'error');
+            debugLog('Login failed');
+        }
     } catch (error) {
         console.error('로그인 중 오류 발생:', error);
         showMessage('서버 오류가 발생했습니다. 나중에 다시 시도해주세요.', 'error');
         debugLog(`Error during login: ${error.message}`);
+    }
+}
+
+// 페이지 로드 시 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('form'); // 로그인 폼 선택자를 적절히 수정하세요
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+    }
+
+    const emailInput = document.querySelector('input[placeholder="이메일 입력"]');
+    const passwordInput = document.querySelector('input[placeholder="비밀번호 입력"]');
+
+    if (emailInput && passwordInput) {
+        emailInput.addEventListener('keypress', handleEnterKey);
+        passwordInput.addEventListener('keypress', handleEnterKey);
+    }
+});
+
+// 엔터 키 처리 함수
+function handleEnterKey(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        handleLogin(event);
     }
 }
 
