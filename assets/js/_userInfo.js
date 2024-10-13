@@ -7,7 +7,7 @@ const accessToken = getAccessToken();
 function formatUserRole(role) {
     const roleMap = {
         'admin': '관리자',
-        'student': '학생',
+        'student': '수강생',
     };
     
     return roleMap[role] || role; // 매핑되지 않은 역할은 그대로 반환
