@@ -39,7 +39,7 @@ async function updateNavigation() {
         return;
     }
 
- // 모든 메뉴 아이템을 가져옵니다.
+    // 모든 메뉴 아이템을 가져옵니다.
     const menuItems = headerUserList.querySelectorAll('li');
 
     menuItems.forEach(item => {
@@ -84,8 +84,28 @@ async function updateNavigation() {
                 }
             }
         }
+        updateSidebar()
     });
+
 }
 
-// 페이지 로드 시 네비게이션 메뉴 업데이트
+async function updateSidebar() {
+    const role = await getCurrentUserRole();
+    
+    // 모든 사이드바를 숨깁니다
+    document.getElementById('adminSidebar').style.display = 'none';
+    document.getElementById('studentSidebar').style.display = 'none';
+    
+    // 역할에 따라 적절한 사이드바를 표시합니다
+    if (role === 'admin') {
+        document.getElementById('adminSidebar').style.display = 'block';
+    } else if (role === 'student') {
+        document.getElementById('studentSidebar').style.display = 'block';
+    }
+}
+
+// 페이지 로드 시 사이드바 업데이트
+document.addEventListener('DOMContentLoaded', updateSidebar);
+
+// 페이지 로드 시 네비게이션 메뉴와 사이드바 업데이트
 document.addEventListener('DOMContentLoaded', updateNavigation);
