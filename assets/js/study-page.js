@@ -115,7 +115,9 @@ function renderVideos(videos, majorId, minorId, accessToken) {
         return '<p>비디오가 없습니다.</p>';
     }
 
-    const midIndex = Math.ceil(videos.length / 2);
+
+    const midIndex = Math.ceil(videos.length / 2 -1);
+
     return videos.map((video, index) => {
         let linkHtml = `
             <a href="#" class="video-link" data-video-id="${video.id}">
