@@ -17,7 +17,7 @@ COPY . .
 EXPOSE 3000
 
 # Express 서버 실행
-CMD ["npm", "app.js"]
+CMD ["node", "app.js"]
 
 # Step 2: Setup Nginx
 FROM nginx:alpine
