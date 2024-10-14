@@ -98,12 +98,20 @@ async function handleLogin(event) {
     }
 }
 
-// 쿠키 설정 함수
+// // 쿠키 설정 함수
+// function setCookie(name, value, hours) {
+//     const d = new Date();
+//     d.setTime(d.getTime() + (hours * 60 * 60 * 1000));
+//     const expires = `expires=${d.toUTCString()}`;
+//     document.cookie = `${name}=${value}; ${expires}; path=/; Secure; SameSite=Strict`;
+// }
+
 function setCookie(name, value, hours) {
     const d = new Date();
     d.setTime(d.getTime() + (hours * 60 * 60 * 1000));
     const expires = `expires=${d.toUTCString()}`;
-    document.cookie = `${name}=${value}; ${expires}; path=/; Secure; SameSite=Strict`;
+    document.cookie = `${name}=${value}; ${expires}; path=/`;
+    // Secure; SameSite 옵션 제거 후 테스트
 }
 
 // 메시지 표시 함수
