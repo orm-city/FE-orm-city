@@ -33,18 +33,18 @@ jobs:
         key: ${{ secrets.KEY }}
         script: |
           set -e
-          
-          # 디렉토리 이동
           cd /home/ubuntu/
-
-          # 도커 로그인
           sudo docker login
+          
+          sudo docker stop fe-orm-city || true
+          sudo docker rm fe-orm-city || true
+          sudo docker rmi ${{ secrets.DOCKER_HUB_USERNAME }}/fe-orm-city:latest || true
 
-          # 이전 컨테이너 중지 및 삭제
-          sudo docker-compose down || true
-
-          # 최신 이미지를 가져오기 위해 pull
-          sudo docker-compose pull
-
-          # 서비스 다시 빌드 및 실행
-          sudo docker-compose up --build -d
+          sudo docker stop nginx-orm-city || true
+          sudo docker rm nginx-orm-city || true
+          sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/fe-orm-city:latest
+          sudo docker network create orm-network || true
+          sudo docker run -d -p 3000:3000 --name fe-orm-city --network orm-network ${{ secrets.DOCKER_HUB_USERNAME }}/fe-orm-city:latest
+          sudo docker run -d -p 80:80 --name nginx-orm-city --network orm-network nginx:alpine
+          sudo docker cp /home/ubuntu/nginx.config nginx-orm-city:/etc/nginx/conf.d/default.conf
+          sudo docker restart nginx-orm-city
