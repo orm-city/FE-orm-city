@@ -118,7 +118,11 @@ if (videoUploadForm) {
         });
 
         if (completeResponse.ok) {
-            alert("Upload completed successfully!");
+            alert("수강 영상 등록이 완료 되었습니다.!");
+            window.onload = function() {
+                // 이전 페이지로 이동
+                window.history.back();
+            };
         } else {
             const completeError = await completeResponse.json();
             console.error("Complete multipart upload failed: ", completeError);
