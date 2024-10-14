@@ -154,6 +154,9 @@ async function registerMinorCategory(event) {
         const result = await response.json();
         console.log('Minor category registered:', result);
         alert('소분류 코스가 성공적으로 등록되었습니다.');
+        setTimeout(() => {
+            window.location.href = '/admin-enroll-course';  // minor등록 후 강의관리 이동
+        }, 1000);
         
         // 폼 초기화
         document.getElementById('courseTitle').value = '';
