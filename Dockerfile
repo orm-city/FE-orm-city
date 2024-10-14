@@ -1,18 +1,20 @@
-# Step 1: Node.js 베이스 이미지 사용
-FROM node:14-alpine
+# Step 1: Build the Express app
+FROM node:18 AS build
 
-# Step 2: 앱 디렉토리 생성
-WORKDIR /usr/src/app
+# 작업 디렉토리 설정
+WORKDIR /app
 
-# Step 3: 패키지 설치
+# 의존성 파일 복사
 COPY package*.json ./
-RUN npm install --production
 
-# Step 4: 애플리케이션 파일 복사
+# 의존성 설치
+RUN npm install
+
+# 소스 코드 복사
 COPY . .
 
-# Step 5: 포트 노출
+# Express 서버를 백그라운드에서 실행할 필요 없음 (Express는 Nginx가 프록시로 사용될 것이므로)
 EXPOSE 3000
 
-# Step 6: 애플리케이션 시작
+# Express 서버 실행
 CMD ["node", "app.js"]
