@@ -5,12 +5,12 @@ const accessToken = getAccessToken();
 const pathSegments = window.location.pathname.split('/');
 const majorId = pathSegments[pathSegments.length - 1];
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const majorCourseForm = document.getElementById('majorCourseForm');
     const minorCoursesForm = document.getElementById('minorCoursesForm');
     const minorCourseList = document.getElementById('minorCourseList');
     const addMinorButton = document.getElementById('addMinorButton');
+    const deleteMajorButton = document.getElementById('deleteMajorButton');
     
     // Major 강의 정보 및 Minor 강의 목록 불러오기
     fetchMajorCourseAndMinors(majorId);
@@ -23,11 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             const updatedCourse = await updateMajorCourse(majorId, name, price);
-            console.log('Server response after update:', updatedCourse);
+            console.log('서버 응답 (업데이트 후):', updatedCourse);
             alert('Major 강의가 성공적으로 업데이트되었습니다.');
         } catch (error) {
-            console.error('Error updating major course:', error);
+            console.error('Major 강의 업데이트 중 오류:', error);
             alert(`Major 강의 업데이트 중 오류가 발생했습니다: ${error.message}`);
+        }
+    });
+
+    // Major 프로그램 삭제 버튼 이벤트
+    deleteMajorButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (confirm('정말로 이 Major 프로그램을 삭제하시겠습니까? 모든 관련 Minor 강의도 함께 삭제됩니다.')) {
+            try {
+                await deleteMajorProgram(majorId);
+                alert('Major 프로그램이 성공적으로 삭제되었습니다.');
+                window.location.href = '/admin-enroll-course'; // 관리자 강의 목록 페이지로 리다이렉트
+            } catch (error) {
+                console.error('Major 프로그램 삭제 중 오류:', error);
+                alert(`Major 프로그램 삭제 중 오류가 발생했습니다: ${error.message}`);
+            }
         }
     });
 
@@ -37,6 +52,64 @@ document.addEventListener('DOMContentLoaded', () => {
         // 여기에 Minor 강의 추가 폼을 표시하거나 모달을 열 수 있습니다.
     });
 });
+
+// Major 프로그램 삭제 함수
+async function deleteMajorProgram(majorId) {
+    const response = await fetch(`${BASE_URL}/courses/major-categories/${majorId}/`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Major 프로그램 삭제 실패: ${response.status} ${response.statusText}. 서버 응답: ${errorText}`);
+    }
+
+    return true; // 삭제 성공
+}
+
+// import { BASE_URL } from './config.js';
+// import { getAccessToken } from './_getCookieUtils.js';
+
+// const accessToken = getAccessToken();
+// const pathSegments = window.location.pathname.split('/');
+// const majorId = pathSegments[pathSegments.length - 1];
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const majorCourseForm = document.getElementById('majorCourseForm');
+//     const minorCoursesForm = document.getElementById('minorCoursesForm');
+//     const minorCourseList = document.getElementById('minorCourseList');
+//     const addMinorButton = document.getElementById('addMinorButton');
+    
+//     // Major 강의 정보 및 Minor 강의 목록 불러오기
+//     fetchMajorCourseAndMinors(majorId);
+
+//     // Major 강의 수정 제출 이벤트
+//     majorCourseForm.addEventListener('submit', async (e) => {
+//         e.preventDefault();
+//         const name = document.getElementById('majorTitle').value;
+//         const price = document.getElementById('majorPrice').value;
+        
+//         try {
+//             const updatedCourse = await updateMajorCourse(majorId, name, price);
+//             console.log('Server response after update:', updatedCourse);
+//             alert('Major 강의가 성공적으로 업데이트되었습니다.');
+//         } catch (error) {
+//             console.error('Error updating major course:', error);
+//             alert(`Major 강의 업데이트 중 오류가 발생했습니다: ${error.message}`);
+//         }
+//     });
+
+//     // Minor 강의 추가 버튼 이벤트
+//     addMinorButton.addEventListener('click', () => {
+//         console.log('Minor 강의 추가 버튼 클릭');
+//         // 여기에 Minor 강의 추가 폼을 표시하거나 모달을 열 수 있습니다.
+//     });
+// });
 
 async function fetchMajorCourseAndMinors(majorId) {
     try {
@@ -130,6 +203,25 @@ async function updateMinorCourse(minorId, name, content, order, majorCategoryId)
     return await response.json();
 }
 
+    // Minor 삭제 
+
+async function deleteMinorCourse(minorId) {
+    const response = await fetch(`${BASE_URL}/courses/minor-categories/${minorId}/`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to delete minor course: ${response.status} ${response.statusText}. Server response: ${errorText}`);
+    }
+
+    return true; // 삭제 성공
+}
+
 
 function renderMinorCourses(minorCourses, majorId) {
     const minorCourseList = document.getElementById('minorCourseList');
@@ -165,24 +257,7 @@ function renderMinorCourses(minorCourses, majorId) {
     });
 
 
-    // Minor 삭제 
 
-    async function deleteMinorCourse(minorId) {
-        const response = await fetch(`${BASE_URL}/courses/minor-categories/${minorId}/`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
-            }
-        });
-    
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Failed to delete minor course: ${response.status} ${response.statusText}. Server response: ${errorText}`);
-        }
-    
-        return true; // 삭제 성공
-    }
 
 // ===== 이벤트 리스너 =====
 
