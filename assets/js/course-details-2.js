@@ -55,7 +55,7 @@ function updateDOM(major_categories) {
     majorCourseDetailsCardElement.innerHTML = `
         <div class="tp-course-details-2-widget-content">
              <div class="tp-course-details-2-widget-price">
-                     <span>${major_categories.price}</span>
+                     <span>${major_categories.price}원</span>
                  </div>
                  <div class="tp-course-details-2-widget-btn">
                      <a href="#" id="paymentButton">강의 구매하기</a>

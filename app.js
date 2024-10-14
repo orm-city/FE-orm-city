@@ -33,9 +33,13 @@ app.get("/profile", (req, res) => {
 });
 
 
-// 나의 수강
-app.get("/my-course", (req, res) => {
-    res.sendFile(path.join(__dirname, "pages", "_instructor-my-course.html"));
+// 나의 수강 - 수강생
+app.get("/student-my-course", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_student-my-course.html"));
+});
+
+app.get("/student_active_course", (req, res) => {
+    res.sendFile(path.join(__dirname, "pages", "_student-my-course.html"));
 });
 
 // 구매내역
@@ -80,17 +84,6 @@ app.get("/code-submissions/:id", (req, res) => {
     const codesubmissionsId = req.params.id;
     res.sendFile(path.join(__dirname, "pages", "_edit-code-submissions.html"));
 });
-/*
-  header user box
-  ====================end============================
-*/
-
-
-
-/*
-  my profile page sidebar menu
-  ====================start=========================
-*/
 
 // 학생 대시보드(미정)
 app.get("/my-dashboard", (req, res) => {

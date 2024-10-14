@@ -40,7 +40,7 @@ function populateCategorySelect(categories) {
         return;
     }
     
-    select.innerHTML = '<option value="Default">대분류 코스 선택</option>';
+    select.innerHTML = '<option value="Default">Major 코스 선택(필수)</option>';
     
     categories.forEach(category => {
         const option = document.createElement('option');

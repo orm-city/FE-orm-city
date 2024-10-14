@@ -1,8 +1,6 @@
 import { BASE_URL } from './config.js';
 import { getAccessToken } from './_getCookieUtils.js';
 
-console.log('All cookies:', document.cookie);
-
 document.addEventListener('DOMContentLoaded', function() {
     // 결제 정보를 가져오는 함수
     async function fetchPaymentInfo() {
