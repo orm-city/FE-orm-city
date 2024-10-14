@@ -118,7 +118,8 @@ if (videoUploadForm) {
         });
 
         if (completeResponse.ok) {
-            alert("Upload completed successfully!");
+            alert("수강 영상 등록이 완료 되었습니다.!");
+            window.location.href = '/admin-enroll-course';
         } else {
             const completeError = await completeResponse.json();
             console.error("Complete multipart upload failed: ", completeError);
